@@ -88,6 +88,307 @@ body.light-mode {
   --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
 }
 
+/* Light Theme Component Overrides */
+body.light-mode .nav-island {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .nav-brand {
+  color: #0f172a;
+}
+
+body.light-mode .nav-link {
+  color: #475569;
+}
+
+body.light-mode .nav-link:hover {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .btn-icon-nav {
+  color: #475569;
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+body.light-mode .btn-icon-nav:hover {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .mobile-nav-drawer {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+body.light-mode .nova-hero {
+  background: radial-gradient(circle at 50% 20%, #f1f5f9 0%, #f8fafc 60%, #ffffff 100%);
+}
+
+body.light-mode .hero-radial-glow {
+  background: radial-gradient(circle, rgba(217, 70, 239, 0.08) 0%, rgba(56, 189, 248, 0.07) 50%, transparent 70%);
+}
+
+body.light-mode .hero-bio {
+  color: #334155;
+}
+
+body.light-mode .hero-bio strong {
+  color: #0f172a;
+}
+
+body.light-mode .hero-role-title {
+  color: #0284c7;
+}
+
+body.light-mode .btn-nova-glass {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+}
+
+body.light-mode .btn-nova-glass:hover {
+  background: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+}
+
+body.light-mode .social-icon-btn {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #475569;
+}
+
+body.light-mode .social-icon-btn:hover {
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.3);
+  background: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .hero-stats-strip {
+  border-top-color: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .stat-number {
+  color: #0f172a;
+}
+
+body.light-mode .stat-label {
+  color: #64748b;
+}
+
+body.light-mode .avatar-caption-badge {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #475569;
+}
+
+body.light-mode .nova-marquee-section {
+  background: #f1f5f9;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .marquee-item {
+  color: rgba(15, 23, 42, 0.6);
+}
+
+body.light-mode .marquee-item:hover {
+  color: #0f172a;
+}
+
+body.light-mode .showcase-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .showcase-title {
+  color: #0f172a;
+}
+
+body.light-mode .showcase-desc {
+  color: #475569;
+}
+
+body.light-mode .tech-tag {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+body.light-mode .showcase-footer {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .stack-exp-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .stack-exp-role {
+  color: #0f172a;
+}
+
+body.light-mode .exp-period-badge {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+body.light-mode .stack-exp-points li {
+  color: #475569;
+}
+
+body.light-mode .stack-exp-right {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .exp-metric-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .exp-metric-label {
+  color: #0284c7;
+}
+
+body.light-mode .exp-metric-val {
+  color: #059669;
+}
+
+body.light-mode .stack-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .stack-card-title {
+  color: #0f172a;
+}
+
+body.light-mode .stack-card-points li {
+  color: #475569;
+}
+
+body.light-mode .btn-project-code {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.15);
+  color: #1e293b;
+}
+
+body.light-mode .btn-project-code:hover {
+  background: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+}
+
+body.light-mode .stack-card-right {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .highlight-chip {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .highlight-text {
+  color: #1e293b;
+}
+
+body.light-mode .skill-tab-btn {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #475569;
+}
+
+body.light-mode .skill-tab-btn .tab-count {
+  background: rgba(15, 23, 42, 0.08);
+  color: #475569;
+}
+
+body.light-mode .skill-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+body.light-mode .skill-name {
+  color: #0f172a;
+}
+
+body.light-mode .skill-desc-tag {
+  color: #64748b;
+}
+
+body.light-mode .skill-level-pill {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+body.light-mode .article-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+}
+
+body.light-mode .article-title {
+  color: #0f172a;
+}
+
+body.light-mode .article-desc {
+  color: #475569;
+}
+
+body.light-mode .achievement-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+body.light-mode .achievement-text {
+  color: #1e293b;
+}
+
+body.light-mode .nova-contact-section {
+  background: radial-gradient(circle at 50% 100%, rgba(217, 70, 239, 0.08) 0%, transparent 60%), #f8fafc;
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .contact-cta-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .contact-desc {
+  color: #475569;
+}
+
+body.light-mode .btn-contact-call {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+}
+
+body.light-mode .btn-contact-call:hover {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .footer-bottom {
+  border-top-color: rgba(15, 23, 42, 0.08);
+  color: #64748b;
+}
+
+body.light-mode .footer-bottom-brand {
+  color: #0f172a;
+}
+
 /*--------------------------------------------------------------
 # 2. Reset & Global Styles
 --------------------------------------------------------------*/

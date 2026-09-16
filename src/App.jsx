@@ -440,9 +440,26 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
   const [activeAvatarMode, setActiveAvatarMode] = useState('photoreal'); // 'photoreal' or '3d'
   const [activeSkillCategory, setActiveSkillCategory] = useState('All');
-  const [isLightMode, setIsLightMode] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('shivendra_theme');
+      if (saved) return saved === 'light';
+    }
+    return false;
+  });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  // Sync theme with body class and localStorage
+  useEffect(() => {
+    if (isLightMode) {
+      document.body.classList.add('light-mode');
+      localStorage.setItem('shivendra_theme', 'light');
+    } else {
+      document.body.classList.remove('light-mode');
+      localStorage.setItem('shivendra_theme', 'dark');
+    }
+  }, [isLightMode]);
 
   // Magnetic card mouse tilt ref
   const magneticCardRef = useRef(null);
@@ -470,13 +487,7 @@ export default function App() {
 
   // Theme switcher handler
   const toggleTheme = () => {
-    const next = !isLightMode;
-    setIsLightMode(next);
-    if (next) {
-      document.body.classList.add('light-mode');
-    } else {
-      document.body.classList.remove('light-mode');
-    }
+    setIsLightMode((prev) => !prev);
   };
 
   // 3D Magnetic Card tilt on mouse move
@@ -649,7 +660,9 @@ export default function App() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <i className="bi bi-twitter-x" />
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
                     </a>
                     <a
                       href="https://github.com/Shivendra-99"
@@ -1156,11 +1169,13 @@ export default function App() {
                 <a
                   href="https://twitter.com/Shivendra9598"
                   className="social-icon-btn"
-                  aria-label="Twitter profile"
+                  aria-label="Twitter/X profile"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <i className="bi bi-twitter-x" />
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </a>
                 <a
                   href="https://github.com/Shivendra-99"
@@ -1184,7 +1199,7 @@ export default function App() {
             {/* Footer Bottom */}
             <footer className="footer-bottom">
               <span className="footer-bottom-brand">Shivendra Kumar Sonkar © {new Date().getFullYear()}</span>
-              <span>Designed with Nova Aesthetic • Built with Pure React.js • Hosted on GitHub Pages</span>
+              <span>Built with Pure React.js • Hosted on GitHub Pages</span>
             </footer>
           </div>
         </section>
