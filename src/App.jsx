@@ -19,13 +19,13 @@ const usePrefersReducedMotion = () => {
   return reduced;
 };
 
-// Navigation items matching Nova structure
+// Navigation items
 const navItems = [
   { id: 'hero', label: 'Home' },
   { id: 'showcase', label: 'Showcase' },
+  { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Experience' },
   { id: 'articles', label: 'Articles' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -35,33 +35,252 @@ const marqueePhrases = [
   'FULLSTACK SOFTWARE ENGINEER',
   'ENTERPRISE JAVA & SPRING BOOT',
   'REACT & THREE.JS CREATOR',
-  'CLOUD & DEVOPS ARCHITECT',
+  'CLOUD & DEVOPS ENGINEERING',
   'AWS & OPENSHIFT',
   'SNAPFIT SAAS CREATOR',
   'HIGH-PERFORMANCE DISTRIBUTED APIS',
   'TERRAFORM & KAFKA / PULSAR',
 ];
 
-// Skills catalog categorized
+// Real authentic SVG tech glyphs
+function renderTechIcon(name) {
+  switch (name) {
+    case 'java':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M8.86 16.38s-.8 1.05.65 1.5c2.09.64 4.54.49 6.78-.17 0 0 .5.78 1.13.91-4.08 1.74-9.82.97-8.56-2.24zm-.8-3.08s-.87.89.47 1.25c2.25.61 5.34.62 7.76-.08 0 0 .34.65.94.75-4.32 1.63-10.74.87-9.17-1.92zm7.74-6.42c1.03 1.1 1.22 2.37.5 3.32-.82 1.07-2.6 1.48-3.8 2.2-1.07.64-1.24 1.2-1.24 1.2s1.42-.4 3.01-.89c1.98-.61 3.42-1.89 2.5-3.35-.74-1.18-1.57-1.7-1.57-2.48 0-.8.6-1.4 1.2-2.18-.7.2-1.2.9-1.2 1.5 0 .2.1.4.2.68zm-3.9 4.38c-.7-.41-1.82-.93-1.82-1.8 0-1.16 1.08-1.97 1.6-2.83.65-1.07.47-1.95.04-2.88-.13.3-.22.65-.22.95 0 .8.7 1.34.33 2.22-.38.89-1.5 1.36-2.02 2.2-.62 1.02-.37 2.12.3 2.92.54-.3.94-.5 1.79-.78zM19 19.5c-3.7 1.8-10.3 1.8-14 0 0 0-.6 1.1.7 1.6 4.3 1.7 11.5 1.5 14-.1 0 0 .5-.9-.7-1.5z" />
+        </svg>
+      );
+    case 'spring':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M21.94 12.3a11.96 11.96 0 0 0-.73-3.64c-.38-.98-.9-1.88-1.54-2.66-.64-.78-1.42-1.43-2.31-1.9-1.78-.95-3.88-1.2-5.88-.72-2 .48-3.78 1.64-5.02 3.26C4.83 8.78 4.2 11.2 4.6 13.6c.4 2.4 1.7 4.54 3.65 5.99 1.95 1.45 4.4 2.05 6.8 1.68 1.2-.18 2.36-.64 3.38-1.34l-2.48-2.48c-.62.38-1.33.62-2.07.7-1.46.16-2.92-.3-4.04-1.26-1.12-.96-1.82-2.33-1.94-3.79-.12-1.46.36-2.9 1.32-3.98s2.32-1.7 3.78-1.72c1.46-.02 2.88.54 3.92 1.54.4.38.74.83 1 1.32.26.49.44 1.02.52 1.57l2.9-.52c.04-.15.08-.3.1-.46z" />
+        </svg>
+      );
+    case 'microservices':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M4 3h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm12 0h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm-6 12h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1zM6 9v2.5A1.5 1.5 0 0 0 7.5 13H11v2h2v-2h3.5a1.5 1.5 0 0 0 1.5-1.5V9h-2v2h-8V9H6z" />
+        </svg>
+      );
+    case 'react':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <circle cx="12" cy="12" r="2.5" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.6" transform="rotate(60 12 12)" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.6" transform="rotate(120 12 12)" />
+        </svg>
+      );
+    case 'javascript':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M3 3h18v18H3V3zm13.7 13.8c-.8.5-1.8.8-2.8.8-2.6 0-4-1.5-4-3.7 0-2.5 1.7-3.9 4.3-3.9.8 0 1.6.2 2.2.5v1.8c-.6-.4-1.3-.6-2.1-.6-1.5 0-2.4.8-2.4 2.1 0 1.2.8 2 2.2 2 .7 0 1.4-.2 1.8-.4l.8 1.4zm-6.2-4.1v4.1H8.8V8.6h1.7v4.1z" />
+        </svg>
+      );
+    case 'threejs':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 2l9 5.2v10.4L12 23l-9-5.4V7.2L12 2zm0 2.3L5.1 8.2 12 12.1l6.9-3.9L12 4.3zm-7 5.1v7.6l6 3.6v-7.6L5 9.4zm14 0l-6 3.6v7.6l6-3.6V9.4z" />
+        </svg>
+      );
+    case 'htmlcss':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M3 2l1.8 17.5L12 22l7.2-2.5L21 2H3zm15.4 5.2H7.6l.3 3.1h10.2l-.7 7.2-5.4 1.5-5.4-1.5-.4-4h2.2l.2 2.1 3.4.9 3.4-.9.4-4H6.8L6 4h12.6l-.2 3.2z" />
+        </svg>
+      );
+    case 'aws':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M6.76 13.06c-.84 0-1.53-.24-2.07-.72-.54-.48-.81-1.12-.81-1.92 0-.82.28-1.48.84-1.97.56-.49 1.33-.74 2.3-.74.83 0 1.51.15 2.05.45v-.43c0-.62-.17-1.09-.5-1.41-.34-.32-.82-.48-1.46-.48-.6 0-1.19.14-1.78.41l-.47-1.16c.72-.37 1.55-.56 2.47-.56 1.11 0 1.96.28 2.54.85.58.57.87 1.38.87 2.44v4.44h-1.5v-1c-.6.7-1.4 1.05-2.48 1.05zm.37-1.18c.62 0 1.15-.2 1.6-.6.44-.4.66-.92.66-1.55v-.42c-.44-.26-1.02-.39-1.74-.39-.67 0-1.2.14-1.58.43-.38.29-.57.69-.57 1.21 0 .43.14.77.43 1.01.29.21.69.31 1.2.31zm11.11 1.06l-2.04-6.85h1.72l1.24 4.88 1.25-4.88h1.68l-2.06 6.85h-1.79zm-4.78.12c-.52 0-.96-.13-1.32-.38-.36-.25-.63-.6-.82-1.03l1.4-.58c.2.46.54.7 1.01.7.35 0 .61-.09.79-.27.18-.18.27-.4.27-.67 0-.5-.39-.81-1.16-.94l-.7-.12c-.89-.15-1.55-.42-1.97-.8-.42-.39-.63-.92-.63-1.59 0-.75.29-1.34.88-1.79.58-.45 1.33-.67 2.24-.67.75 0 1.41.17 1.99.52.57.34.93.85 1.06 1.51l-1.44.5c-.14-.38-.42-.58-.85-.58-.33 0-.58.08-.74.24-.16.16-.24.36-.24.6 0 .44.37.72 1.1.84l.71.12c.93.16 1.63.45 2.08.87.46.42.69.97.69 1.67 0 .78-.3 1.4-.9 1.86-.6.46-1.4.69-2.38.69zM3.5 17.5c5.5 3.3 12.3 3.3 17 0l.9 1.2c-5.2 3.8-13 3.8-18.8 0l.9-1.2z" />
+        </svg>
+      );
+    case 'openshift':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8l7 3.5-7 3.5-7-3.5 7-3.5zM4 9.1l7 3.5v7l-7-3.5V9.1zm16 7l-7 3.5v-7l7-3.5v7z" />
+        </svg>
+      );
+    case 'docker':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M22.5 11c-.3 0-.6.1-.8.2-.4-.7-1.1-1.2-2-1.2h-.5c-.3-1.4-1.5-2.5-3-2.5h-1V5H2v7.5C2 17.2 5.8 21 10.5 21c5.2 0 9.5-3.8 10.3-8.8.8-.2 1.7-.8 1.7-1.7 0-.3 0-.5 0-.5zM7.5 7.5H10v2.5H7.5V7.5zm-3 0H7v2.5H4.5V7.5zm6 0H13v2.5h-2.5V7.5zm-6 3.5H7v2.5H4.5V11zm3 0H10v2.5H7.5V11zm3 0H13v2.5h-2.5V11zm3 0h2.5v2.5H13.5V11z" />
+        </svg>
+      );
+    case 'terraform':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M1.5 2.5v6.2l5.4 3.1V5.6L1.5 2.5zm7 4.1v6.2l5.4 3.1V9.7L8.5 6.6zm7.1 0v6.2l5.4-3.1V3.5l-5.4 3.1zM8.5 13.9v6.2l5.4-3.1v-6.2l-5.4 3.1z" />
+        </svg>
+      );
+    case 'monitoring':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M3 13h4l3-8 4 14 3-6h4v-2h-3l-3 6-4-14-3 8H3v2z" />
+        </svg>
+      );
+    case 'mongodb':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 1.5s-6 5.5-6 11.5c0 4.5 3.5 7.8 6 9.5 2.5-1.7 6-5 6-9.5 0-6-6-11.5-6-11.5zm.5 17.5v-7.2c0-.3-.2-.5-.5-.5s-.5.2-.5.5v7.2c-2-1.4-4-3.7-4-6.7 0-4.2 3.5-7.9 4.5-8.9 1 1 4.5 4.7 4.5 8.9 0 3-2 5.3-4 6.7z" />
+        </svg>
+      );
+    case 'mysql':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 3C7 3 3 5.5 3 8.5c0 2.2 2.2 4.1 5.4 4.9L7 17l4.5-2.2c.2 0 .3 0 .5.02 5 0 9-2.5 9-5.5S17 3 12 3zm0 9c-4.4 0-8-1.8-8-4s3.6-4 8-4 8 1.8 8 4-3.6 4-8 4z" />
+        </svg>
+      );
+    case 'snowflake':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" />
+        </svg>
+      );
+    case 'pulsar':
+      return (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.93V19h-2v-2.07c-2.84-.48-5-2.94-5-5.93s2.16-5.45 5-5.93V3h2v2.07c2.84.48 5 2.94 5 5.93s-2.16 5.45-5 5.93zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+        </svg>
+      );
+    default:
+      return <i className="bi bi-cpu" />;
+  }
+}
+
+// Skills catalog categorized with genuine brand styling and SVG icons
 const skillCategories = ['All', 'Backend & Core', 'Frontend', 'Cloud & DevOps', 'Databases & Messaging'];
 
 const allSkills = [
-  { name: 'Core Java', category: 'Backend & Core', icon: 'bi-filetype-java' },
-  { name: 'Spring Boot', category: 'Backend & Core', icon: 'bi-gear-wide-connected' },
-  { name: 'REST APIs & Microservices', category: 'Backend & Core', icon: 'bi-diagram-3' },
-  { name: 'React.js', category: 'Frontend', icon: 'bi-code-square' },
-  { name: 'JavaScript (ES6+)', category: 'Frontend', icon: 'bi-filetype-js' },
-  { name: 'Three.js / WebGL', category: 'Frontend', icon: 'bi-badge-3d' },
-  { name: 'HTML5 & Modern CSS', category: 'Frontend', icon: 'bi-filetype-html' },
-  { name: 'AWS (S3, Lambda, Beanstalk, SQS)', category: 'Cloud & DevOps', icon: 'bi-cloud-check' },
-  { name: 'Red Hat OpenShift', category: 'Cloud & DevOps', icon: 'bi-boxes' },
-  { name: 'Docker & Containers', category: 'Cloud & DevOps', icon: 'bi-box-seam' },
-  { name: 'Terraform IaC', category: 'Cloud & DevOps', icon: 'bi-cpu' },
-  { name: 'Dynatrace & Splunk', category: 'Cloud & DevOps', icon: 'bi-activity' },
-  { name: 'MongoDB', category: 'Databases & Messaging', icon: 'bi-database' },
-  { name: 'MySQL', category: 'Databases & Messaging', icon: 'bi-database-fill' },
-  { name: 'Snowflake', category: 'Databases & Messaging', icon: 'bi-snow' },
-  { name: 'Apache Pulsar / Kafka', category: 'Databases & Messaging', icon: 'bi-broadcast' },
+  {
+    name: 'Core Java',
+    category: 'Backend & Core',
+    level: 'Advanced / Concurrency',
+    color: '#f89820',
+    glow: 'rgba(248, 152, 32, 0.25)',
+    icon: 'java',
+  },
+  {
+    name: 'Spring Boot',
+    category: 'Backend & Core',
+    level: 'Enterprise Microservices',
+    color: '#6db33f',
+    glow: 'rgba(109, 179, 63, 0.25)',
+    icon: 'spring',
+  },
+  {
+    name: 'REST APIs & Microservices',
+    category: 'Backend & Core',
+    level: 'High-Throughput / Distributed',
+    color: '#a855f7',
+    glow: 'rgba(168, 85, 247, 0.25)',
+    icon: 'microservices',
+  },
+  {
+    name: 'React.js',
+    category: 'Frontend',
+    level: 'Hooks, SPA & SSR Architecture',
+    color: '#61dafb',
+    glow: 'rgba(97, 218, 251, 0.25)',
+    icon: 'react',
+  },
+  {
+    name: 'JavaScript (ES6+)',
+    category: 'Frontend',
+    level: 'Async/Await, Canvas, V8 Perf',
+    color: '#f7df1e',
+    glow: 'rgba(247, 223, 30, 0.25)',
+    icon: 'javascript',
+  },
+  {
+    name: 'Three.js / WebGL',
+    category: 'Frontend',
+    level: '3D Shaders & Interactive Viewports',
+    color: '#00f0ff',
+    glow: 'rgba(0, 240, 255, 0.25)',
+    icon: 'threejs',
+  },
+  {
+    name: 'HTML5 & Modern CSS',
+    category: 'Frontend',
+    level: 'Responsive Grid, Flex & Glassmorphism',
+    color: '#e34f26',
+    glow: 'rgba(227, 79, 38, 0.25)',
+    icon: 'htmlcss',
+  },
+  {
+    name: 'AWS Cloud Ecosystem',
+    category: 'Cloud & DevOps',
+    level: 'S3, Lambda, Beanstalk, SQS, IAM',
+    color: '#ff9900',
+    glow: 'rgba(255, 153, 0, 0.25)',
+    icon: 'aws',
+  },
+  {
+    name: 'Red Hat OpenShift',
+    category: 'Cloud & DevOps',
+    level: 'Enterprise Kubernetes Clusters',
+    color: '#ee0000',
+    glow: 'rgba(238, 0, 0, 0.25)',
+    icon: 'openshift',
+  },
+  {
+    name: 'Docker & Containers',
+    category: 'Cloud & DevOps',
+    level: 'Multi-stage Builds & Compose',
+    color: '#2496ed',
+    glow: 'rgba(36, 150, 237, 0.25)',
+    icon: 'docker',
+  },
+  {
+    name: 'Terraform IaC',
+    category: 'Cloud & DevOps',
+    level: 'Declarative Cloud Infrastructure',
+    color: '#844fba',
+    glow: 'rgba(132, 79, 186, 0.25)',
+    icon: 'terraform',
+  },
+  {
+    name: 'Dynatrace & Splunk',
+    category: 'Cloud & DevOps',
+    level: 'APM Telemetry & Log Ingestion',
+    color: '#00e676',
+    glow: 'rgba(0, 230, 118, 0.25)',
+    icon: 'monitoring',
+  },
+  {
+    name: 'MongoDB',
+    category: 'Databases & Messaging',
+    level: 'NoSQL Aggregation & Sharding',
+    color: '#47a248',
+    glow: 'rgba(71, 162, 72, 0.25)',
+    icon: 'mongodb',
+  },
+  {
+    name: 'MySQL',
+    category: 'Databases & Messaging',
+    level: 'Relational Indexing & Query Tuning',
+    color: '#00758f',
+    glow: 'rgba(0, 117, 143, 0.25)',
+    icon: 'mysql',
+  },
+  {
+    name: 'Snowflake',
+    category: 'Databases & Messaging',
+    level: 'Cloud Data Warehousing & RBAC',
+    color: '#29b5e8',
+    glow: 'rgba(41, 181, 232, 0.25)',
+    icon: 'snowflake',
+  },
+  {
+    name: 'Apache Pulsar / Kafka',
+    category: 'Databases & Messaging',
+    level: 'Distributed Event Streaming',
+    color: '#199bff',
+    glow: 'rgba(25, 155, 255, 0.25)',
+    icon: 'pulsar',
+  },
 ];
 
 // Projects data with verified metrics and links
@@ -244,7 +463,7 @@ export default function App() {
   // Section observer for floating navbar
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'showcase', 'projects', 'skills', 'experience', 'articles', 'contact'];
+      const sections = ['hero', 'showcase', 'experience', 'projects', 'skills', 'articles', 'contact'];
       const scrollPos = window.scrollY + 200;
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -316,7 +535,6 @@ export default function App() {
         <div className="nav-island">
           <a href="#hero" className="nav-brand">
             <span>Shivendra</span>
-            <span className="nav-brand-badge">NOVA</span>
           </a>
 
           <ul className="nav-menu">
@@ -407,13 +625,13 @@ export default function App() {
               <div className="hero-content">
                 <div className="hero-status-badge">
                   <span className="pulse-dot" />
-                  <span>AVAILABLE FOR ROLES &amp; CLOUD ARCHITECTURE</span>
+                  <span>AVAILABLE FOR FULLSTACK ROLES &amp; HIGH-IMPACT PROJECTS</span>
                 </div>
 
                 <h1 className="hero-title">Shivendra Kumar Sonkar</h1>
 
                 <p className="hero-role-title">
-                  Fullstack Software Engineer &amp; <span>Cloud Architect</span>
+                  Fullstack Software Engineer
                 </p>
 
                 <p className="hero-bio">
@@ -645,7 +863,72 @@ export default function App() {
         </section>
 
         {/* ============================================================ */}
-        {/* 4. STACKING PROJECT CARDS (Signature Nova Experience)        */}
+        {/* 4. CAREER EXPERIENCE (Stacking Signature Nova Cards)         */}
+        {/* ============================================================ */}
+        <section id="experience">
+          <div className="container">
+            <div className="section-header-wrap">
+              <div className="section-tag">
+                <span className="dot" />
+                <span>Track Record</span>
+              </div>
+              <h2 className="section-heading">Work Experience</h2>
+              <p className="section-desc">
+                Proven track record delivering scalable features, slashing latency, and migrating mission-critical systems across enterprise environments.
+              </p>
+            </div>
+
+            <div className="stacking-experience-wrapper">
+              {experienceData.map((exp, idx) => (
+                <div
+                  key={idx}
+                  className="stack-exp-card"
+                  style={{ '--stack-offset': `${idx * 24}px` }}
+                >
+                  {/* Left Column: Role, Company, Period, Bullets */}
+                  <div className="stack-exp-left">
+                    <div className="stack-exp-meta">
+                      <span className="exp-idx">0{idx + 1} / 0{experienceData.length}</span>
+                      <span className="exp-period-badge">
+                        <i className="bi bi-calendar3" style={{ marginRight: 6 }} />
+                        {exp.period}
+                      </span>
+                    </div>
+
+                    <h3 className="stack-exp-role">{exp.role}</h3>
+                    <div className="stack-exp-company">
+                      <i className="bi bi-buildings" />
+                      <span>{exp.company}</span>
+                      <span style={{ color: 'var(--color-text-dim)', fontSize: 14, fontWeight: 500 }}>• {exp.location}</span>
+                    </div>
+
+                    <ul className="stack-exp-points">
+                      {exp.bullets.map((b, bIdx) => (
+                        <li key={bIdx}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Right Column: Quantified Telemetry & Metrics */}
+                  <div className="stack-exp-right">
+                    <h4 className="card-highlights-title">Quantified Production Impact</h4>
+                    <div className="highlight-chips-grid">
+                      {exp.metrics.map((m, mIdx) => (
+                        <div key={mIdx} className="exp-metric-card">
+                          <span className="exp-metric-label">{m.label}</span>
+                          <span className="exp-metric-val">{m.val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 5. STACKING PROJECT CARDS (Signature Nova Experience)        */}
         {/* ============================================================ */}
         <section id="projects">
           <div className="container">
@@ -728,7 +1011,7 @@ export default function App() {
         </section>
 
         {/* ============================================================ */}
-        {/* 5. INTERACTIVE SKILLS MATRIX                                 */}
+        {/* 6. INTERACTIVE SKILLS MATRIX (Enhanced Nova Tech Grid)       */}
         {/* ============================================================ */}
         <section id="skills">
           <div className="container">
@@ -743,83 +1026,48 @@ export default function App() {
               </p>
             </div>
 
-            {/* Category Filter Tabs */}
+            {/* Category Filter Tabs with Item Counts */}
             <div className="skills-filter-tabs">
-              {skillCategories.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  className={`skill-tab-btn ${activeSkillCategory === cat ? 'active' : ''}`}
-                  onClick={() => setActiveSkillCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
+              {skillCategories.map((cat) => {
+                const count =
+                  cat === 'All'
+                    ? allSkills.length
+                    : allSkills.filter((s) => s.category === cat).length;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    className={`skill-tab-btn ${activeSkillCategory === cat ? 'active' : ''}`}
+                    onClick={() => setActiveSkillCategory(cat)}
+                  >
+                    <span>{cat}</span>
+                    <span className="tab-count">{count}</span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Skills Grid */}
+            {/* Enhanced Skills Grid */}
             <div className="skills-matrix-grid">
               {filteredSkills.map((skill, sIdx) => (
-                <div key={sIdx} className="skill-card">
-                  <div className="skill-icon-wrap">
-                    <i className={`bi ${skill.icon}`} />
-                  </div>
-                  <div className="skill-info">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-category">{skill.category}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 6. CAREER EXPERIENCE TIMELINE                                */}
-        {/* ============================================================ */}
-        <section id="experience">
-          <div className="container">
-            <div className="section-header-wrap">
-              <div className="section-tag">
-                <span className="dot" />
-                <span>Track Record</span>
-              </div>
-              <h2 className="section-heading">Work Experience</h2>
-              <p className="section-desc">
-                Proven track record delivering scalable features, slashing latency, and migrating mission-critical systems across enterprise environments.
-              </p>
-            </div>
-
-            <div className="experience-timeline">
-              {experienceData.map((exp, idx) => (
-                <div key={idx} className="experience-card">
-                  <div className="exp-header">
-                    <div className="exp-role-wrap">
-                      <h3>{exp.role}</h3>
-                      <span className="exp-company">{exp.company}</span>
+                <div
+                  key={sIdx}
+                  className="skill-card"
+                  style={{
+                    '--skill-color': skill.color,
+                    '--skill-glow': skill.glow,
+                  }}
+                >
+                  <div className="skill-main">
+                    <div className="skill-icon-wrap" style={{ color: skill.color }}>
+                      {renderTechIcon(skill.icon)}
                     </div>
-                    <span className="exp-period-badge">
-                      <i className="bi bi-calendar3" style={{ marginRight: 6 }} />
-                      {exp.period}
-                    </span>
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-desc-tag">{skill.level}</span>
+                    </div>
                   </div>
-
-                  {/* Quantified Metrics Pills */}
-                  <div className="exp-highlights-grid">
-                    {exp.metrics.map((m, mIdx) => (
-                      <span key={mIdx} className="exp-metric-pill">
-                        <i className="bi bi-check2-circle" />
-                        <strong>{m.label}:</strong> {m.val}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Bullet points */}
-                  <ul className="exp-bullets">
-                    {exp.bullets.map((b, bIdx) => (
-                      <li key={bIdx}>{b}</li>
-                    ))}
-                  </ul>
+                  <span className="skill-level-pill">{skill.category}</span>
                 </div>
               ))}
             </div>

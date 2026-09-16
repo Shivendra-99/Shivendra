@@ -3,63 +3,59 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 
+// Smooth camera rig with gentle pointer inertia
 const RigCamera = ({ enabled }) => {
   const { camera, pointer } = useThree();
   useFrame(() => {
     if (!enabled) return;
-    camera.position.x += (pointer.x * 0.75 - camera.position.x) * 0.035;
-    camera.position.y += (pointer.y * 0.45 - camera.position.y) * 0.035;
+    camera.position.x += (pointer.x * 0.45 - camera.position.x) * 0.025;
+    camera.position.y += (pointer.y * 0.3 - camera.position.y) * 0.025;
     camera.lookAt(0, 0, 0);
   });
   return null;
 };
 
-const RotatingCyberShape = ({ enabled, position, geometry, color, wireframe = true, speed = 1, rotationAxis = [1, 1, 0] }) => {
+// Elegant floating cyber ring placed far off in peripheral space (never blocks text)
+const AmbientFloatingOrb = ({ position, color, size, speed }) => {
   const meshRef = useRef();
   useFrame((state, delta) => {
-    if (!enabled || !meshRef.current) return;
-    meshRef.current.rotation.x += delta * speed * 0.25 * rotationAxis[0];
-    meshRef.current.rotation.y += delta * speed * 0.35 * rotationAxis[1];
-    meshRef.current.rotation.z += delta * speed * 0.2 * (rotationAxis[2] || 0);
+    if (!meshRef.current) return;
+    meshRef.current.rotation.x += delta * speed * 0.15;
+    meshRef.current.rotation.y += delta * speed * 0.2;
   });
 
   return (
-    <Float
-      speed={enabled ? 1.6 * speed : 0}
-      rotationIntensity={enabled ? 0.8 : 0}
-      floatIntensity={enabled ? 1.2 : 0}
-    >
+    <Float speed={1.2 * speed} rotationIntensity={0.4} floatIntensity={0.6}>
       <mesh ref={meshRef} position={position}>
-        {geometry}
+        <sphereGeometry args={[size, 24, 24]} />
         <meshBasicMaterial
           color={color}
-          wireframe={wireframe}
+          wireframe
           transparent
-          opacity={0.65}
-          side={THREE.DoubleSide}
+          opacity={0.18}
         />
       </mesh>
     </Float>
   );
 };
 
-// Subtle ambient particle dust field
-const AmbientParticleField = ({ count = 120, enabled }) => {
+// Subtle ambient particle dust field with gentle organic drift
+const SoftParticleField = ({ count = 90, enabled }) => {
   const pointsRef = useRef();
   const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     const palette = [
-      new THREE.Color('#d946ef'), // Magenta
-      new THREE.Color('#a855f7'), // Violet
-      new THREE.Color('#00f0ff'), // Cyan
-      new THREE.Color('#60a5fa'), // Sky Blue
+      new THREE.Color('#d946ef'), // Soft Magenta
+      new THREE.Color('#a855f7'), // Soft Violet
+      new THREE.Color('#00f0ff'), // Cyber Cyan
+      new THREE.Color('#38bdf8'), // Sky
     ];
 
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 16;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 8 - 2;
+      pos[i * 3] = (Math.random() - 0.5) * 18;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 6 - 2;
 
       const c = palette[Math.floor(Math.random() * palette.length)];
       col[i * 3] = c.r;
@@ -71,84 +67,52 @@ const AmbientParticleField = ({ count = 120, enabled }) => {
 
   useFrame((state, delta) => {
     if (!enabled || !pointsRef.current) return;
-    pointsRef.current.rotation.y += delta * 0.02;
-    pointsRef.current.rotation.x += delta * 0.01;
+    pointsRef.current.rotation.y += delta * 0.012;
+    pointsRef.current.rotation.x += delta * 0.008;
   });
 
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.06}
+        size={0.045}
         vertexColors
         transparent
-        opacity={0.8}
+        opacity={0.6}
         blending={THREE.AdditiveBlending}
       />
     </points>
   );
 };
 
-const CyberHeroScene = ({ enabled }) => {
-  const shapes = useMemo(
-    () => [
-      {
-        position: [4.2, 1.8, -2.5],
-        geometry: <torusKnotGeometry args={[0.9, 0.24, 100, 16]} />,
-        color: '#d946ef', // Electric Magenta
-        speed: 0.9,
-        rotationAxis: [1, 0.8, 0.4],
-      },
-      {
-        position: [-4.4, -1.2, -3.2],
-        geometry: <icosahedronGeometry args={[1.3, 1]} />,
-        color: '#00f0ff', // Cyber Cyan
-        speed: 0.7,
-        rotationAxis: [0.6, 1, 0.3],
-      },
-      {
-        position: [2.5, -2.4, -3],
-        geometry: <octahedronGeometry args={[0.7, 0]} />,
-        color: '#a855f7', // Electric Violet
-        speed: 1.1,
-        rotationAxis: [1, 0.5, 0.8],
-      },
-      {
-        position: [-2.2, 2.6, -4],
-        geometry: <ringGeometry args={[0.6, 0.85, 32]} />,
-        color: '#38bdf8', // Neon Sky
-        speed: 0.8,
-        rotationAxis: [0.3, 0.8, 1],
-      },
-    ],
-    []
-  );
-
+// Clean, sophisticated 3D Scene (No heavy wireframes colliding with text!)
+const CleanCyberScene = ({ enabled }) => {
   return (
     <>
       <RigCamera enabled={enabled} />
+      {/* Deep, crisp starry backdrop */}
       <Stars
-        radius={70}
-        depth={35}
-        count={enabled ? 2800 : 800}
-        factor={2.4}
-        saturation={0.5}
+        radius={80}
+        depth={40}
+        count={enabled ? 1600 : 600}
+        factor={1.8}
+        saturation={0.3}
         fade
-        speed={enabled ? 0.7 : 0}
+        speed={enabled ? 0.4 : 0}
       />
-      <AmbientParticleField count={enabled ? 160 : 50} enabled={enabled} />
-      {shapes.map((shape, i) => (
-        <RotatingCyberShape key={i} enabled={enabled} {...shape} />
-      ))}
+      {/* Subtle organic ambient particles */}
+      <SoftParticleField count={enabled ? 80 : 30} enabled={enabled} />
+
+      {/* Gentle floating ambient elements pushed to the far sides */}
+      {enabled && (
+        <>
+          <AmbientFloatingOrb position={[6.5, 2.2, -4]} color="#d946ef" size={1.2} speed={0.8} />
+          <AmbientFloatingOrb position={[-6.8, -2.5, -4]} color="#00f0ff" size={1.0} speed={0.6} />
+        </>
+      )}
     </>
   );
 };
@@ -157,13 +121,13 @@ const Hero3D = ({ reducedMotion }) => {
   return (
     <Canvas
       className="hero-3d-canvas"
-      dpr={[1, 1.8]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }}
-      camera={{ position: [0, 0, 6], fov: 55 }}
+      camera={{ position: [0, 0, 5.5], fov: 50 }}
       frameloop={reducedMotion ? 'demand' : 'always'}
     >
       <Suspense fallback={null}>
-        <CyberHeroScene enabled={!reducedMotion} />
+        <CleanCyberScene enabled={!reducedMotion} />
       </Suspense>
     </Canvas>
   );
