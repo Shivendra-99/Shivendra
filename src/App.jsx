@@ -1,8 +1,6 @@
-import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import shivendraAvatar from '../assets/img/shivendra-avatar.jpg';
 import shivendra3dAvatar from '../assets/img/shivendra-3d-avatar.jpg';
-
-const Hero3D = lazy(() => import('./three/Hero3D.jsx'));
 
 const usePrefersReducedMotion = () => {
   const [reduced, setReduced] = useState(
@@ -34,7 +32,7 @@ const navItems = [
 const marqueePhrases = [
   'FULLSTACK SOFTWARE ENGINEER',
   'ENTERPRISE JAVA & SPRING BOOT',
-  'REACT & THREE.JS CREATOR',
+  'REACT.JS ARCHITECT & UI CREATOR',
   'CLOUD & DEVOPS ENGINEERING',
   'AWS & OPENSHIFT',
   'SNAPFIT SAAS CREATOR',
@@ -78,10 +76,10 @@ function renderTechIcon(name) {
           <path d="M3 3h18v18H3V3zm13.7 13.8c-.8.5-1.8.8-2.8.8-2.6 0-4-1.5-4-3.7 0-2.5 1.7-3.9 4.3-3.9.8 0 1.6.2 2.2.5v1.8c-.6-.4-1.3-.6-2.1-.6-1.5 0-2.4.8-2.4 2.1 0 1.2.8 2 2.2 2 .7 0 1.4-.2 1.8-.4l.8 1.4zm-6.2-4.1v4.1H8.8V8.6h1.7v4.1z" />
         </svg>
       );
-    case 'threejs':
+    case 'tailwind':
       return (
         <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-          <path d="M12 2l9 5.2v10.4L12 23l-9-5.4V7.2L12 2zm0 2.3L5.1 8.2 12 12.1l6.9-3.9L12 4.3zm-7 5.1v7.6l6 3.6v-7.6L5 9.4zm14 0l-6 3.6v7.6l6-3.6V9.4z" />
+          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
         </svg>
       );
     case 'htmlcss':
@@ -194,12 +192,12 @@ const allSkills = [
     icon: 'javascript',
   },
   {
-    name: 'Three.js / WebGL',
+    name: 'Tailwind CSS',
     category: 'Frontend',
-    level: '3D Shaders & Interactive Viewports',
-    color: '#00f0ff',
-    glow: 'rgba(0, 240, 255, 0.25)',
-    icon: 'threejs',
+    level: 'Responsive UI & Modern Utility Design',
+    color: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.25)',
+    icon: 'tailwind',
   },
   {
     name: 'HTML5 & Modern CSS',
@@ -445,20 +443,9 @@ export default function App() {
   const [isLightMode, setIsLightMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
-  const [render3D, setRender3D] = useState(false);
 
   // Magnetic card mouse tilt ref
   const magneticCardRef = useRef(null);
-
-  // Determine whether to mount Three.js canvas
-  useEffect(() => {
-    const checkViewport = () => {
-      setRender3D(window.innerWidth >= 768 && !reducedMotion);
-    };
-    checkViewport();
-    window.addEventListener('resize', checkViewport);
-    return () => window.removeEventListener('resize', checkViewport);
-  }, [reducedMotion]);
 
   // Section observer for floating navbar
   useEffect(() => {
@@ -610,13 +597,6 @@ export default function App() {
         {/* 1. HERO SECTION & MAGNETIC PORTRAIT                          */}
         {/* ============================================================ */}
         <section id="hero" className="nova-hero">
-          {/* Background 3D Canvas */}
-          {render3D && (
-            <Suspense fallback={null}>
-              <Hero3D reducedMotion={reducedMotion} />
-            </Suspense>
-          )}
-
           <div className="hero-radial-glow" aria-hidden="true" />
 
           <div className="container">
@@ -637,7 +617,7 @@ export default function App() {
                 <p className="hero-bio">
                   I design and build enterprise-grade distributed systems and modern reactive web applications.
                   Pairing robust backend microservices (<strong>Java, Spring Boot</strong>) with fluid interfaces (
-                  <strong>React, Three.js</strong>) and resilient cloud infrastructure (<strong>AWS, OpenShift, Docker</strong>).
+                  <strong>React.js, Modern UI Architecture</strong>) and resilient cloud infrastructure (<strong>AWS, OpenShift, Docker</strong>).
                   Creator of <strong>SnapFit</strong> (snapfit.in), an independently solo-shipped SaaS platform.
                 </p>
 
@@ -741,15 +721,15 @@ export default function App() {
                     type="button"
                     className={`switcher-btn ${activeAvatarMode === '3d' ? 'active' : ''}`}
                     onClick={() => setActiveAvatarMode('3d')}
-                    title="View 3D Creator Avatar"
+                    title="View Creative Digital Avatar"
                   >
-                    <i className="bi bi-badge-3d-fill" />
-                    <span>3D Avatar</span>
+                    <i className="bi bi-person-badge-fill" />
+                    <span>Creative Avatar</span>
                   </button>
                 </div>
 
                 <div className="avatar-caption-badge">
-                  <span>✦ NO-CODE / FULLSTACK 3D CREATOR AESTHETIC</span>
+                  <span>✦ MODERN FULLSTACK ENGINEER &amp; CREATOR AESTHETIC</span>
                 </div>
               </div>
             </div>
@@ -1204,7 +1184,7 @@ export default function App() {
             {/* Footer Bottom */}
             <footer className="footer-bottom">
               <span className="footer-bottom-brand">Shivendra Kumar Sonkar © {new Date().getFullYear()}</span>
-              <span>Designed with Nova 3D Creator Aesthetic • React &amp; Three.js • Hosted on GitHub Pages</span>
+              <span>Designed with Nova Aesthetic • Built with Pure React.js • Hosted on GitHub Pages</span>
             </footer>
           </div>
         </section>

@@ -29,7 +29,7 @@ Fullstack breadth paired with cloud/DevOps depth: Java/Spring Boot and React on 
 - Single-page React (Vite) site; all content (experience, projects, skills, articles, achievements) is hardcoded in `src/App.jsx` — no CMS, no backend, no database.
 - No contact form. Reaching out happens via `mailto:`/`tel:` links and social profiles, not a submission flow.
 - A separate one-page PDF résumé is generated from a ReportLab script outside this repo, whose content is manually kept in sync with `src/App.jsx`. When experience, projects, or skills change here, the résumé PDF needs a matching regeneration — it is not auto-derived from this codebase.
-- Light/dark theme (dark by default), with a cinematic hero (Three.js/React Three Fiber + GSAP ScrollTrigger) that must degrade gracefully under `prefers-reduced-motion` and on narrow or low-power devices.
+- Light/dark theme (dark by default), with a cinematic pure React.js hero that degrades gracefully under `prefers-reduced-motion` and on narrow or low-power devices.
 
 ## Brand Commitments
 
@@ -55,4 +55,4 @@ Fullstack breadth paired with cloud/DevOps depth: Java/Spring Boot and React on 
 
 ## Accessibility & Inclusion
 
-Respects `prefers-reduced-motion` throughout (GSAP/ScrollTrigger sequences and the Three.js hero are skipped or simplified accordingly); keyboard focus-visible styling and a skip-to-content link are in place.
+Respects `prefers-reduced-motion` throughout (GSAP sequences are skipped or simplified accordingly); keyboard focus-visible styling and a skip-to-content link are in place.

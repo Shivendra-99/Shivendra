@@ -22,12 +22,9 @@
   },
   "homepage": "https://github.com/Shivendra-99/Shivendra-99.github.io#readme",
   "dependencies": {
-    "@react-three/drei": "^10.7.8",
-    "@react-three/fiber": "^9.7.0",
     "gsap": "^3.15.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "three": "^0.185.1"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.4",
