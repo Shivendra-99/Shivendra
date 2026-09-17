@@ -484,6 +484,46 @@ const articlesData = [
     ],
     tags: ['AWS SQS', 'AWS Lambda', 'Express.js', 'Event-Driven', 'Cloud'],
   },
+  {
+    id: '05',
+    title: 'Kafka vs Pulsar: A Simple Guide (With Real Examples)',
+    platform: 'Medium',
+    readTime: '6 min read',
+    tech: 'Apache Kafka, Apache Pulsar, Event Streaming, Distributed Systems, BookKeeper',
+    link: 'https://medium.com/@sanusonkar1/kafka-vs-pulsar-a-simple-guide-with-real-examples-c560e4774fa6',
+    desc: 'An architectural deep dive comparing Kafka’s coupled broker-storage engine with Pulsar’s multi-tiered storage model, detailing real-world tradeoffs in throughput, partition rebalancing, and native multi-tenancy.',
+    keyTakeaways: [
+      'Contrasts Kafka’s log-centric model against Pulsar’s two-layer architecture separating stateless brokers from Apache BookKeeper storage nodes.',
+      'Examines scaling overhead: costly partition rebalancing in Kafka vs instant, zero-rebalance capacity expansion in Pulsar.',
+      'Defines decision blueprints: choosing Kafka for massive-scale pure event streaming vs Pulsar for enterprise multi-tenancy and hybrid queuing.',
+    ],
+    highlights: [
+      { label: 'ARCHITECTURE', val: 'Coupled vs Decoupled Storage', icon: 'bi-hdd-network-fill' },
+      { label: 'SCALING', val: 'Stateless Brokers & BookKeeper', icon: 'bi-diagram-2-fill' },
+      { label: 'PLATFORM', val: 'Medium Publication', icon: 'bi-award-fill' },
+    ],
+    tags: ['Apache Kafka', 'Apache Pulsar', 'Event Streaming', 'Distributed Systems', 'Message Queues'],
+  },
+  {
+    id: '06',
+    title: 'REST vs GraphQL vs gRPC: When to Actually Use Each',
+    platform: 'Medium',
+    readTime: '7 min read',
+    tech: 'RESTful APIs, GraphQL, gRPC, HTTP/2, Protocol Buffers, Microservices',
+    link: 'https://medium.com/@sanusonkar1/rest-vs-graphql-vs-grpc-when-to-actually-use-each-1474171949cf',
+    desc: 'A pragmatic decision framework comparing REST, GraphQL, and gRPC across real-world microservice architectures, client data fetching requirements, and high-throughput binary serialization performance.',
+    keyTakeaways: [
+      'Evaluates payload overhead and transmission efficiency: text-based JSON over HTTP/1.1 vs compact binary Protocol Buffers over HTTP/2.',
+      'Solves frontend over-fetching and multiple roundtrips with GraphQL schema queries while navigating query complexity trade-offs.',
+      'Outlines clear production adoption rules: gRPC for internal low-latency microservice RPCs, REST for public APIs, and GraphQL for complex web dashboards.',
+    ],
+    highlights: [
+      { label: 'COMMUNICATION', val: 'Protobuf / HTTP/2 vs JSON', icon: 'bi-arrow-left-right' },
+      { label: 'DATA FETCHING', val: 'Over/Under-Fetching Solved', icon: 'bi-funnel-fill' },
+      { label: 'PLATFORM', val: 'Medium Publication', icon: 'bi-award-fill' },
+    ],
+    tags: ['REST API', 'GraphQL', 'gRPC', 'Microservices', 'System Design'],
+  },
 ];
 
 // Achievements
