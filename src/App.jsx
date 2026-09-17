@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import shivendraAvatar from '../assets/img/shivendra-avatar.jpg';
 import shivendra3dAvatar from '../assets/img/shivendra-3d-avatar.jpg';
+import HeroMotionBackdrop from './components/HeroMotionBackdrop.jsx';
 
 const usePrefersReducedMotion = () => {
   const [reduced, setReduced] = useState(
@@ -23,8 +24,8 @@ const navItems = [
   { id: 'showcase', label: 'Showcase' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Skills' },
   { id: 'articles', label: 'Articles' },
+  { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -115,7 +116,9 @@ function renderTechIcon(name) {
     case 'monitoring':
       return (
         <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-          <path d="M3 13h4l3-8 4 14 3-6h4v-2h-3l-3 6-4-14-3 8H3v2z" />
+          <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z" />
+          <path d="M12 6a1 1 0 0 0-1 1v4.586l-2.707 2.707a1 1 0 0 0 1.414 1.414l3-3A1 1 0 0 0 13 12V7a1 1 0 0 0-1-1z" />
+          <circle cx="12" cy="12" r="2" />
         </svg>
       );
     case 'mongodb':
@@ -127,19 +130,21 @@ function renderTechIcon(name) {
     case 'mysql':
       return (
         <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-          <path d="M12 3C7 3 3 5.5 3 8.5c0 2.2 2.2 4.1 5.4 4.9L7 17l4.5-2.2c.2 0 .3 0 .5.02 5 0 9-2.5 9-5.5S17 3 12 3zm0 9c-4.4 0-8-1.8-8-4s3.6-4 8-4 8 1.8 8 4-3.6 4-8 4z" />
+          <path d="M12 3C6.48 3 2 4.79 2 7v10c0 2.21 4.48 4 10 4s10-1.79 10-4V7c0-2.21-4.48-4-10-4zm0 2c4.41 0 8 1.34 8 3s-3.59 3-8 3-8-1.34-8-3 3.59-3 8-3zm8 7c0 .41-.35.8-.97 1.15C17.43 13.97 14.86 14.5 12 14.5s-5.43-.53-7.03-1.35C4.35 12.8 4 12.41 4 12V9.82c1.78 1.32 4.71 2.18 8 2.18s6.22-.86 8-2.18V12zm0 5c0 .41-.35.8-.97 1.15C17.43 18.97 14.86 19.5 12 19.5s-5.43-.53-7.03-1.35C4.35 17.8 4 17.41 4 17v-2.18c1.78 1.32 4.71 2.18 8 2.18s6.22-.86 8-2.18V17z" />
         </svg>
       );
     case 'snowflake':
       return (
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" />
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M11 2v4.17l-2.58-2.58-1.42 1.41L11 9.01V11H9.01L5 6.99 3.59 8.41 6.17 11H2v2h4.17l-2.58 2.59L5 17.01 9.01 13H11v1.99l-4.01 4.02 1.42 1.41L11 17.83V22h2v-4.17l2.59 2.58 1.41-1.41L13 14.99V13h1.99l4.02 4.01 1.41-1.41L17.83 13H22v-2h-4.17l2.58-2.59-1.41-1.41L14.99 11H13V9.01l4.01-4.01-1.41-1.41L13 6.17V2h-2z" />
         </svg>
       );
     case 'pulsar':
       return (
         <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.93V19h-2v-2.07c-2.84-.48-5-2.94-5-5.93s2.16-5.45 5-5.93V3h2v2.07c2.84.48 5 2.94 5 5.93s-2.16 5.45-5 5.93zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+          <path d="M12 6a6 6 0 0 0-6 6h2a4 4 0 0 1 4-4V6zm0 12a6 6 0 0 0 6-6h-2a4 4 0 0 1-4 4v2z" />
         </svg>
       );
     default:
@@ -397,31 +402,87 @@ const experienceData = [
   },
 ];
 
-// Technical articles
+// Technical articles with verified takeaways and architectural highlights
 const articlesData = [
   {
-    title: 'Text to PDF conversion using AWS Lambda and S3',
+    id: '01',
+    title: 'Text to PDF Conversion Using AWS Lambda & S3',
     platform: 'Hashnode',
+    readTime: '5 min read',
+    tech: 'Java 17, AWS Lambda, Amazon S3, Serverless Architecture',
     link: 'https://shivendra-sonkar.hashnode.dev/text-to-pdf-conversion-using-aws-lambda-and-s3-using-java',
-    desc: 'Architecting a serverless workflow to convert raw text input into structured PDF documents using AWS Lambda and persisting them in Amazon S3 for secure, durable access.',
+    desc: 'Architecting a serverless workflow to convert raw dynamic text input into structured, downloadable PDF documents using AWS Lambda and persisting them into Amazon S3 buckets with lifecycle retention.',
+    keyTakeaways: [
+      'Constructed an event-driven serverless pipeline converting raw dynamic text payloads into PDF documents on demand.',
+      'Integrated AWS Java SDK to securely stream generated document buffers directly to Amazon S3 with lifecycle policies.',
+      'Optimized JVM cold-start latency and memory allocation configurations within AWS Lambda execution runtime.',
+    ],
+    highlights: [
+      { label: 'SERVERLESS', val: 'AWS Lambda Java Runtime', icon: 'bi-cloud-arrow-up-fill' },
+      { label: 'STORAGE', val: 'Amazon S3 Document Lake', icon: 'bi-archive-fill' },
+      { label: 'PLATFORM', val: 'Hashnode Published', icon: 'bi-bookmark-check-fill' },
+    ],
+    tags: ['AWS Lambda', 'Amazon S3', 'Java', 'Serverless', 'Cloud Architecture'],
   },
   {
+    id: '02',
     title: 'Self-Hosting Judge0 on Windows: A Step-by-Step Guide',
     platform: 'Hashnode',
+    readTime: '6 min read',
+    tech: 'Docker, WSL2, Ubuntu, Judge0 CE, Redis, PostgreSQL',
     link: 'https://shivendra-sonkar.hashnode.dev/self-hosting-judge0-on-windows-a-step-by-step-guide',
-    desc: 'Comprehensive step-by-step guide to setting up an isolated Judge0 code-execution sandbox on Windows, compiling and executing code across multiple programming languages.',
+    desc: 'Comprehensive step-by-step engineering guide to configuring an isolated, high-throughput code-execution engine locally on Windows for competitive programming and online judge systems.',
+    keyTakeaways: [
+      'Engineered an isolated Docker sandbox environment running on Windows via WSL2 backend, eliminating host vulnerabilities.',
+      'Configured asynchronous job queues with Redis and PostgreSQL for low-latency multi-language compilation.',
+      'Documented REST API testing workflows with cURL and Postman for batch submission and polling.',
+    ],
+    highlights: [
+      { label: 'ARCHITECTURE', val: 'Dockerized Sandboxing', icon: 'bi-box-seam-fill' },
+      { label: 'EXECUTION', val: 'Multi-Language Compiler', icon: 'bi-cpu-fill' },
+      { label: 'PLATFORM', val: 'Hashnode Published', icon: 'bi-bookmark-check-fill' },
+    ],
+    tags: ['Docker', 'Judge0', 'WSL2', 'Sandboxing', 'DevOps'],
   },
   {
+    id: '03',
     title: 'How to Connect MongoDB with Spring Boot?',
     platform: 'GeeksforGeeks',
+    readTime: '5 min read',
+    tech: 'Java 17, Spring Boot 3, Spring Data MongoDB, MongoRepository',
     link: 'https://www.geeksforgeeks.org/how-to-connect-mongodb-with-spring-boot/',
-    desc: 'Step-by-step architectural breakdown of integrating MongoDB with a modern Spring Boot backend, covering connection pooling, repository abstractions, and common pitfalls.',
+    desc: 'Step-by-step architectural breakdown of integrating MongoDB with an enterprise Spring Boot backend, covering connection pooling, repository abstractions, indexing, and production pitfalls.',
+    keyTakeaways: [
+      'Configured robust MongoCredential and replica-set connection strings inside application.properties.',
+      'Leveraged MongoTemplate for complex aggregation queries alongside standard MongoRepository interfaces.',
+      'Identified and resolved production bottlenecks: connection leaks, index creation, and entity serialization.',
+    ],
+    highlights: [
+      { label: 'INTEGRATION', val: 'Spring Data MongoDB', icon: 'bi-database-fill-gear' },
+      { label: 'PATTERN', val: 'Domain-Driven Repository', icon: 'bi-diagram-3-fill' },
+      { label: 'PLATFORM', val: 'GeeksforGeeks Featured', icon: 'bi-patch-check-fill' },
+    ],
+    tags: ['Spring Boot', 'MongoDB', 'Java', 'NoSQL', 'Backend'],
   },
   {
+    id: '04',
     title: 'Building an Async Email Notification System with Express, SQS & Lambda',
     platform: 'Medium',
+    readTime: '7 min read',
+    tech: 'Node.js, Express, Amazon SQS, AWS Lambda, Serverless',
     link: 'https://medium.com/@sanusonkar1/how-i-built-an-async-email-notification-system-using-express-js-sqs-and-aws-lambda-be09adbafd22',
-    desc: 'Practical walkthrough of designing a decoupled, resilient background email queuing system using Express.js, Amazon SQS, and serverless AWS Lambda workers.',
+    desc: 'Practical walkthrough of designing a decoupled, resilient background email queuing architecture using Express.js, Amazon SQS, and serverless AWS Lambda worker consumers.',
+    keyTakeaways: [
+      'Decoupled HTTP request lifecycles from blocking SMTP transports using asynchronous Amazon SQS queues.',
+      'Constructed serverless AWS Lambda consumer workers triggered automatically by SQS event source mappings.',
+      'Configured Dead-Letter Queues (DLQ) with exponential backoff retries for fault-tolerant delivery guarantees.',
+    ],
+    highlights: [
+      { label: 'DECOUPLING', val: 'Amazon SQS Message Queue', icon: 'bi-envelope-paper-fill' },
+      { label: 'SERVERLESS', val: 'AWS Lambda Event Workers', icon: 'bi-cloud-check-fill' },
+      { label: 'PLATFORM', val: 'Medium Publication', icon: 'bi-award-fill' },
+    ],
+    tags: ['AWS SQS', 'AWS Lambda', 'Express.js', 'Event-Driven', 'Cloud'],
   },
 ];
 
@@ -461,13 +522,14 @@ export default function App() {
     }
   }, [isLightMode]);
 
-  // Magnetic card mouse tilt ref
+  // Magnetic card mouse tilt ref & touch gesture ref
   const magneticCardRef = useRef(null);
+  const touchStartXRef = useRef(null);
 
   // Section observer for floating navbar
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'showcase', 'experience', 'projects', 'skills', 'articles', 'contact'];
+      const sections = ['hero', 'showcase', 'experience', 'projects', 'articles', 'skills', 'contact'];
       const scrollPos = window.scrollY + 200;
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -490,9 +552,10 @@ export default function App() {
     setIsLightMode((prev) => !prev);
   };
 
-  // 3D Magnetic Card tilt on mouse move
+  // 3D Magnetic Card tilt on mouse move (desktop only to prevent sticking on touch devices)
   const handleCardMouseMove = (e) => {
     if (reducedMotion || !magneticCardRef.current) return;
+    if (typeof window !== 'undefined' && (window.innerWidth <= 768 || window.matchMedia('(pointer: coarse)').matches)) return;
     const card = magneticCardRef.current;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -608,6 +671,9 @@ export default function App() {
         {/* 1. HERO SECTION & MAGNETIC PORTRAIT                          */}
         {/* ============================================================ */}
         <section id="hero" className="nova-hero">
+          {/* Pure React Interactive Motion Particles */}
+          <HeroMotionBackdrop />
+
           <div className="hero-radial-glow" aria-hidden="true" />
 
           <div className="container">
@@ -704,26 +770,56 @@ export default function App() {
                   ref={magneticCardRef}
                   onMouseMove={handleCardMouseMove}
                   onMouseLeave={handleCardMouseLeave}
+                  onTouchStart={(e) => {
+                    if (e.touches && e.touches[0]) {
+                      touchStartXRef.current = e.touches[0].clientX;
+                    }
+                  }}
+                  onTouchEnd={(e) => {
+                    if (touchStartXRef.current !== null && e.changedTouches && e.changedTouches[0]) {
+                      const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+                      if (Math.abs(deltaX) > 40) {
+                        setActiveAvatarMode((prev) => (prev === 'photoreal' ? '3d' : 'photoreal'));
+                      }
+                      touchStartXRef.current = null;
+                    }
+                  }}
                   role="region"
-                  aria-label="Interactive Avatar Display"
+                  aria-label="Interactive Avatar Display (Tap switcher or swipe left/right to toggle)"
                 >
                   <div className="avatar-halo" aria-hidden="true" />
                   <div className="magnetic-avatar-inner">
                     <img
-                      src={activeAvatarMode === 'photoreal' ? shivendraAvatar : shivendra3dAvatar}
-                      alt="Shivendra Kumar Sonkar — Fullstack Engineer &amp; Creator"
+                      src={shivendraAvatar}
+                      alt="Shivendra Kumar Sonkar — Executive Studio Headshot"
+                      className={`avatar-img ${activeAvatarMode === 'photoreal' ? 'active' : ''}`}
                       loading="eager"
                       decoding="async"
+                      draggable={false}
+                    />
+                    <img
+                      src={shivendra3dAvatar}
+                      alt="Shivendra Kumar Sonkar — 3D Creative Avatar"
+                      className={`avatar-img ${activeAvatarMode === '3d' ? 'active' : ''}`}
+                      loading="eager"
+                      decoding="async"
+                      draggable={false}
                     />
                   </div>
                 </div>
 
                 {/* Interactive Mode Switcher */}
-                <div className="avatar-switcher-pill">
+                <div className="avatar-switcher-pill" role="tablist" aria-label="Avatar display mode">
                   <button
                     type="button"
+                    role="tab"
+                    aria-selected={activeAvatarMode === 'photoreal'}
                     className={`switcher-btn ${activeAvatarMode === 'photoreal' ? 'active' : ''}`}
                     onClick={() => setActiveAvatarMode('photoreal')}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      setActiveAvatarMode('photoreal');
+                    }}
                     title="View Studio Headshot"
                   >
                     <i className="bi bi-camera-fill" />
@@ -732,8 +828,14 @@ export default function App() {
 
                   <button
                     type="button"
+                    role="tab"
+                    aria-selected={activeAvatarMode === '3d'}
                     className={`switcher-btn ${activeAvatarMode === '3d' ? 'active' : ''}`}
                     onClick={() => setActiveAvatarMode('3d')}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      setActiveAvatarMode('3d');
+                    }}
                     title="View Creative Digital Avatar"
                   >
                     <i className="bi bi-person-badge-fill" />
@@ -1004,7 +1106,97 @@ export default function App() {
         </section>
 
         {/* ============================================================ */}
-        {/* 6. INTERACTIVE SKILLS MATRIX (Enhanced Nova Tech Grid)       */}
+        {/* 6. TECHNICAL ARTICLES (Stacking Signature Nova Cards)         */}
+        {/* ============================================================ */}
+        <section id="articles">
+          <div className="container">
+            <div className="section-header-wrap">
+              <div className="section-tag">
+                <span className="dot" />
+                <span>Knowledge Sharing</span>
+              </div>
+              <h2 className="section-heading">Published Articles</h2>
+              <p className="section-desc">
+                In-depth technical guides, architectural breakdowns, and tutorials published across Hashnode, GeeksforGeeks, and Medium. Engineering architectures that stack as you read.
+              </p>
+            </div>
+
+            <div className="stacking-articles-wrapper">
+              {articlesData.map((art, idx) => (
+                <article
+                  key={art.id}
+                  className="stack-article-card"
+                  style={{ '--stack-offset': `${idx * 24}px` }}
+                >
+                  {/* Left Column: Meta, Title, Tech, Bullets, Action Button */}
+                  <div className="stack-article-left">
+                    <div className="stack-article-meta">
+                      <span className="article-idx">{art.id} / 0{articlesData.length}</span>
+                      <div className="article-meta-badges">
+                        <span className="article-platform-badge">{art.platform}</span>
+                        <span className="article-readtime-badge">
+                          <i className="bi bi-clock" style={{ marginRight: 5 }} />
+                          {art.readTime}
+                        </span>
+                      </div>
+                    </div>
+
+                    <h3 className="stack-article-title">{art.title}</h3>
+                    <p className="stack-article-tech">{art.tech}</p>
+                    <p className="stack-article-desc">{art.desc}</p>
+
+                    <ul className="stack-article-points">
+                      {art.keyTakeaways.map((pt, pIdx) => (
+                        <li key={pIdx}>{pt}</li>
+                      ))}
+                    </ul>
+
+                    <div className="stack-article-links">
+                      <a
+                        href={art.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-article-read"
+                      >
+                        <i className="bi bi-book-half" />
+                        <span>Read Full Article on {art.platform}</span>
+                        <i className="bi bi-arrow-up-right" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Architectural Highlights & Topic Chips */}
+                  <div className="stack-article-right">
+                    <h4 className="card-highlights-title">Engineering Takeaways</h4>
+                    <div className="highlight-chips-grid">
+                      {art.highlights.map((item, hIdx) => (
+                        <div key={hIdx} className="article-metric-card">
+                          <i className={`bi ${item.icon} article-metric-icon`} />
+                          <div className="article-metric-content">
+                            <span className="article-metric-label">{item.label}</span>
+                            <span className="article-metric-val">{item.val}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="article-tags-wrap">
+                      <span className="article-tags-heading">TOPICS &amp; STACK</span>
+                      <div className="article-tags-grid">
+                        {art.tags.map((tag, tIdx) => (
+                          <span key={tIdx} className="article-tag-chip">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 7. INTERACTIVE SKILLS MATRIX (Enhanced Nova Tech Grid)       */}
         {/* ============================================================ */}
         <section id="skills">
           <div className="container">
@@ -1051,56 +1243,17 @@ export default function App() {
                     '--skill-glow': skill.glow,
                   }}
                 >
-                  <div className="skill-main">
+                  <div className="skill-card-top">
                     <div className="skill-icon-wrap" style={{ color: skill.color }}>
                       {renderTechIcon(skill.icon)}
                     </div>
-                    <div className="skill-info">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-desc-tag">{skill.level}</span>
-                    </div>
+                    <span className="skill-level-pill">{skill.category}</span>
                   </div>
-                  <span className="skill-level-pill">{skill.category}</span>
+                  <div className="skill-card-bottom">
+                    <span className="skill-name">{skill.name}</span>
+                    <span className="skill-desc-tag">{skill.level}</span>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 7. TECHNICAL ARTICLES                                        */}
-        {/* ============================================================ */}
-        <section id="articles">
-          <div className="container">
-            <div className="section-header-wrap">
-              <div className="section-tag">
-                <span className="dot" />
-                <span>Knowledge Sharing</span>
-              </div>
-              <h2 className="section-heading">Published Articles</h2>
-              <p className="section-desc">
-                In-depth technical guides, architectural breakdowns, and tutorials published across Hashnode, GeeksforGeeks, and Medium.
-              </p>
-            </div>
-
-            <div className="articles-grid">
-              {articlesData.map((art, idx) => (
-                <article key={idx} className="article-card">
-                  <div>
-                    <span className="article-platform-badge">{art.platform}</span>
-                    <h3 className="article-title">{art.title}</h3>
-                    <p className="article-desc">{art.desc}</p>
-                  </div>
-                  <a
-                    href={art.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="article-link"
-                  >
-                    <span>Read Full Article</span>
-                    <i className="bi bi-arrow-up-right" />
-                  </a>
-                </article>
               ))}
             </div>
           </div>
