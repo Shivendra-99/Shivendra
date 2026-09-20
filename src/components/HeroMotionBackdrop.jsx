@@ -75,12 +75,68 @@ export default function HeroMotionBackdrop() {
       };
     });
 
-    const render = () => {
+    // Motion Sequence Clock for Cinematic Camera Pull-Back
+    const startTime = performance.now();
+    const INTRO_DURATION = 3200; // 3.2s smooth camera pull-back ease
+
+    // Orbital ring state (Asset 03 & Asset 04 technical structures)
+    let orbitAngle = 0;
+
+    const render = (now) => {
       ctx.clearRect(0, 0, width, height);
 
       // Smooth mouse interpolation
       mouse.x += (mouse.targetX - mouse.x) * 0.06;
       mouse.y += (mouse.targetY - mouse.y) * 0.06;
+
+      // Cinematic Camera Pull-Back Sequence (ASSET 04 Motion Specification)
+      // Eases smoothly from 1.35x zoom down to 1.0x over 3.2 seconds
+      const elapsed = (now || performance.now()) - startTime;
+      const introProgress = Math.min(Math.max(elapsed / INTRO_DURATION, 0), 1);
+      // Smooth cubic out easing
+      const easeOut = 1 - Math.pow(1 - introProgress, 3);
+      const cameraZoom = 1.35 - 0.35 * easeOut;
+      const systemActivationAlpha = Math.min(elapsed / 1600, 1);
+
+      ctx.save();
+      // Center camera transformation
+      const centerX = width * 0.5;
+      const centerY = height * 0.45;
+      ctx.translate(centerX, centerY);
+      ctx.scale(cameraZoom, cameraZoom);
+      ctx.translate(-centerX, -centerY);
+
+      // Draw subtle futuristic orbital tech rings (System World Architecture)
+      orbitAngle += 0.002;
+      const ringCenter = {
+        x: width > 992 ? width * 0.76 : width * 0.5,
+        y: height * 0.45,
+      };
+
+      const ringRadii = [90, 160, 240, 320];
+      for (let r = 0; r < ringRadii.length; r++) {
+        const radius = ringRadii[r];
+        const dir = r % 2 === 0 ? 1 : -1;
+        const currentAngle = orbitAngle * dir * (0.8 + r * 0.25);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(ringCenter.x, ringCenter.y, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = r % 2 === 0 ? 'rgba(0, 240, 255, 0.09)' : 'rgba(217, 70, 239, 0.07)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([6, 16]);
+        ctx.lineDashOffset = -currentAngle * 60;
+        ctx.stroke();
+
+        // Accent nodes on rings
+        const nodeX = ringCenter.x + Math.cos(currentAngle) * radius;
+        const nodeY = ringCenter.y + Math.sin(currentAngle) * radius;
+        ctx.beginPath();
+        ctx.arc(nodeX, nodeY, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = r % 2 === 0 ? 'rgba(0, 240, 255, 0.45)' : 'rgba(217, 70, 239, 0.4)';
+        ctx.fill();
+        ctx.restore();
+      }
 
       // Draw and update each particle
       for (let i = 0; i < particles.length; i++) {
@@ -110,7 +166,7 @@ export default function HeroMotionBackdrop() {
 
         // Luminous breathing pulse
         p.pulseAngle += p.pulseSpeed;
-        const alpha = p.baseAlpha * (0.65 + 0.35 * Math.sin(p.pulseAngle));
+        const alpha = p.baseAlpha * (0.65 + 0.35 * Math.sin(p.pulseAngle)) * systemActivationAlpha;
 
         // Soft Outer Glow
         ctx.beginPath();
@@ -138,18 +194,19 @@ export default function HeroMotionBackdrop() {
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = p.color;
-            ctx.globalAlpha = (1 - cdist / 105) * 0.16;
+            ctx.globalAlpha = (1 - cdist / 105) * 0.16 * systemActivationAlpha;
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
       }
 
+      ctx.restore();
       ctx.globalAlpha = 1;
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(animationFrameId);

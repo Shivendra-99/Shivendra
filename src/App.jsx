@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import shivendraAvatar from '../assets/img/shivendra-avatar.jpg';
 import shivendra3dAvatar from '../assets/img/shivendra-3d-avatar.jpg';
+import systemWorldCore from '../assets/img/system-world-core.jpg';
+import systemFinalMotion from '../assets/img/system-final-motion.jpg';
 import HeroMotionBackdrop from './components/HeroMotionBackdrop.jsx';
 
 const usePrefersReducedMotion = () => {
@@ -707,6 +709,12 @@ export default function App() {
 
       {/* Main Content Area */}
       <main id="main-content">
+        {/* Persistent 3D System World Architecture (Asset 03) */}
+        <div className="persistent-system-world" aria-hidden="true">
+          <div className="system-world-bg" style={{ backgroundImage: `url(${systemWorldCore})` }} />
+          <div className="system-world-vignette" />
+        </div>
+
         {/* ============================================================ */}
         {/* 1. HERO SECTION & MAGNETIC PORTRAIT                          */}
         {/* ============================================================ */}
@@ -1332,10 +1340,28 @@ export default function App() {
         <section id="contact" className="nova-contact-section">
           <div className="container">
             <div className="contact-cta-card">
-              <h2 className="contact-title">Let&apos;s Build Something Extraordinary</h2>
-              <p className="contact-desc">
-                Whether you are looking to scale high-throughput microservices, modernize your frontend, or deploy resilient cloud infrastructure, I&apos;m ready to contribute immediately.
-              </p>
+              {/* Asset 05: Engineering Architecture & Camera Pull-Back Culmination */}
+              <div
+                className="contact-culmination-bg"
+                style={{ backgroundImage: `url(${systemFinalMotion})` }}
+                aria-hidden="true"
+              />
+              <div className="contact-culmination-overlay" aria-hidden="true" />
+
+              <div className="contact-cta-content">
+                <div className="contact-status-tag">
+                  <span className="pulse-dot" />
+                  <span>AUTONOMOUS CLOUD &amp; FULLSTACK ARCHITECTURE</span>
+                </div>
+
+                <h2 className="contact-title">
+                  LET&apos;S BUILD<br />
+                  <span className="contact-title-accent">WHAT&apos;S NEXT.</span>
+                </h2>
+
+                <p className="contact-desc">
+                  Whether you are scaling high-throughput microservices, modernizing frontend architectures, or architecting resilient event-driven cloud systems — let&apos;s build what&apos;s next.
+                </p>
 
               <div className="contact-button-row">
                 <button type="button" onClick={copyEmail} className="btn-copy-email">
@@ -1388,11 +1414,12 @@ export default function App() {
                 </a>
               </div>
             </div>
+            </div>
 
             {/* Footer Bottom */}
             <footer className="footer-bottom">
               <span className="footer-bottom-brand">Shivendra Kumar Sonkar © {new Date().getFullYear()}</span>
-              <span>Built with Pure React.js • Hosted on GitHub Pages</span>
+              {/*<span>Built with Pure React.js • Hosted on GitHub Pages</span> */}
             </footer>
           </div>
         </section>

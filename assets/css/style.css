@@ -2108,17 +2108,127 @@ body.light-mode .hero-motion-canvas {
   border-top: 1px solid var(--color-border);
 }
 
+/*--------------------------------------------------------------
+# Persistent 3D System World Backdrop (Asset 03)
+--------------------------------------------------------------*/
+.persistent-system-world {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.system-world-bg {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background-size: cover;
+  background-position: center 35%;
+  opacity: 0.16;
+  filter: saturate(1.1) brightness(0.9);
+  transition: opacity var(--transition-smooth);
+}
+
+.system-world-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(7, 8, 12, 0.7) 70%, #07080c 100%);
+}
+
+body.light-mode .system-world-bg {
+  opacity: 0.05;
+  filter: contrast(1.2) brightness(1.1);
+}
+
+body.light-mode .system-world-vignette {
+  background: radial-gradient(circle at 50% 40%, transparent 30%, rgba(248, 250, 252, 0.75) 75%, #f8fafc 100%);
+}
+
 .contact-cta-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border-bright);
   border-radius: var(--radius-xl);
-  padding: 64px 48px;
+  padding: 72px 48px;
   text-align: center;
   max-width: 880px;
   margin: 0 auto 80px;
   box-shadow: var(--shadow-lg), 0 0 50px rgba(182, 0, 168, 0.15);
   position: relative;
   overflow: hidden;
+}
+
+.contact-culmination-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center 40%;
+  opacity: 0.22;
+  transform: scale(1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity var(--transition-smooth);
+  pointer-events: none;
+}
+
+.contact-cta-card:hover .contact-culmination-bg {
+  transform: scale(1.06);
+  opacity: 0.28;
+}
+
+.contact-culmination-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(18, 20, 30, 0.72) 0%, rgba(7, 8, 12, 0.94) 85%);
+  pointer-events: none;
+}
+
+.contact-cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.contact-title-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body.light-mode .contact-culmination-bg {
+  opacity: 0.08;
+}
+
+body.light-mode .contact-culmination-overlay {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.82) 0%, rgba(248, 250, 252, 0.95) 85%);
 }
 
 .contact-cta-card::before {
@@ -2129,6 +2239,7 @@ body.light-mode .hero-motion-canvas {
   right: 0;
   height: 3px;
   background: var(--gradient-accent);
+  z-index: 3;
 }
 
 .contact-title {
