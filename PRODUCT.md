@@ -40,7 +40,8 @@ Fullstack breadth paired with cloud/DevOps depth: Java/Spring Boot and React on 
 ## Evidence on Hand
 
 - Verifiable work history: Accenture Solutions Pvt. Ltd. (current) and Cognizant Technology Solutions, with specific claimed metrics (e.g. API response time reduced from 10s to 2.5s).
-- Real, live independent projects: SnapFit (snapfit.in, github.com/Shivendra-99/snapFit) and News App (newsapp-lac-ten.vercel.app, with GitHub repo). Tweet App and E‑Voting App exist as described but have no live deployment or public repo — do not fabricate a link for them.
+- Real, live independent projects: SnapFit (snapfit.in, github.com/Shivendra-99/snapFit) and News App (newsapp-lac-ten.vercel.app, with GitHub repo). Tweet App and E‑Voting App were removed from the site on request — don't re-add them.
+- Real Credly certifications (Anthropic Claude Certified ×4, Google Cloud ×3), each linked to its own credly.com/badges/<id> page.
 - Real published articles with working external links (Hashnode, GeeksforGeeks, Medium).
 - Real achievements and contest results (HackerEarth, HackerRank Gold Badge, LeetCode 3‑star, etc.) — treat as fixed facts, not examples to embellish or round.
 - B.Tech in Computer Science & Engineering, Ambalika Institute of Management and Technology, Lucknow (2017–2021).

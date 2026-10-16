@@ -401,6 +401,10 @@ body.light-mode .achievement-text {
   color: #1e293b;
 }
 
+body.light-mode .cert-verify {
+  color: #0e7490;
+}
+
 body.light-mode .nova-contact-section {
   background: radial-gradient(circle at 50% 100%, rgba(217, 70, 239, 0.08) 0%, transparent 60%), #f8fafc;
   border-top-color: rgba(15, 23, 42, 0.08);
@@ -2096,6 +2100,43 @@ body.light-mode .hero-motion-canvas {
   font-size: 14px;
   color: var(--color-text);
   line-height: 1.55;
+}
+
+a.achievement-card {
+  text-decoration: none;
+}
+
+.cert-card {
+  align-items: center;
+}
+
+.cert-badge {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.cert-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-cyan);
+}
+
+.cert-card:hover .cert-verify,
+.cert-card:focus-visible .cert-verify {
+  text-decoration: underline;
+}
+
+.cert-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--color-text-muted);
 }
 
 /*--------------------------------------------------------------

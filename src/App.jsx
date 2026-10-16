@@ -26,6 +26,7 @@ const navItems = [
   { id: 'showcase', label: 'Showcase' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
+  { id: 'certifications', label: 'Certs' },
   { id: 'articles', label: 'Articles' },
   { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
@@ -328,43 +329,6 @@ const projectsData = [
       { icon: 'bi-globe2', text: 'Multi-Country Global News Aggregation' },
     ],
   },
-  {
-    id: '03',
-    title: 'Tweet App',
-    category: 'Fullstack Microservices Architecture',
-    tech: 'Java, Spring Boot, MongoDB, React.js, Docker, AWS (Amplify, Elastic Beanstalk)',
-    liveUrl: '',
-    githubUrl: '',
-    points: [
-      'Designed a distributed microblogging platform featuring JWT secure authentication, tweet feed authoring, and social interactions.',
-      'Containerized backend services with Docker and deployed scalable microservices on AWS Elastic Beanstalk with frontend on AWS Amplify.',
-      'Configured Grafana monitoring dashboards and automated metric alerts for real-time operational observability.',
-      'Built a durable serverless text-to-PDF generation pipeline utilizing AWS Lambda and Amazon S3 buckets.',
-    ],
-    highlights: [
-      { icon: 'bi-cloud-arrow-up', text: 'AWS Elastic Beanstalk & Amplify Deployment' },
-      { icon: 'bi-graph-up-arrow', text: 'Grafana Telemetry & Server Metric Alerting' },
-      { icon: 'bi-cpu', text: 'Serverless AWS Lambda Text-to-PDF Workflows' },
-    ],
-  },
-  {
-    id: '04',
-    title: 'E-Voting App',
-    category: 'Mobile Application & Biometrics',
-    tech: 'Java, Android SDK, Firebase Auth, REST APIs, Biometric APIs',
-    liveUrl: '',
-    githubUrl: '',
-    points: [
-      'Developed a secure Android electronic voting application enabling verified remote citizens to cast ballots securely.',
-      'Implemented multi-factor identity verification incorporating Firebase Authentication and biometric fingerprint scanning.',
-      'Integrated real-time RESTful APIs to deliver precinct-level election candidate data and ballot tallies dynamically.',
-    ],
-    highlights: [
-      { icon: 'bi-fingerprint', text: 'Hardware Biometric Fingerprint Authentication' },
-      { icon: 'bi-lock', text: 'Tamper-Resistant Multi-Tier Security Architecture' },
-      { icon: 'bi-phone', text: 'Native Android SDK Integration' },
-    ],
-  },
 ];
 
 // Experience entries with verified metrics
@@ -538,6 +502,17 @@ const achievementsData = [
   { icon: 'bi-bullseye', text: 'Tech Buzz Coding Contest: Secured 2nd Place across all competitors.' },
 ];
 
+// Certifications (Credly badges, each linked to its own verification page; img = Credly badge image id)
+const certificationsData = [
+  { name: 'Claude Certified Architect – Professional', issuer: 'Anthropic', date: 'Oct 2026', id: '9c9f7c3f-ba7e-4061-ab7e-fdfa5a78a834', img: '7583afbc-4aab-4c7d-8af4-d9af72786ab3' },
+  { name: 'Claude Certified Architect – Foundations', issuer: 'Anthropic', date: 'Sep 2026', id: 'dcb11496-e7f1-477f-92ec-2dc8e57aea13', img: 'f2040db3-3904-4240-8966-e87b1510bea0' },
+  { name: 'Claude Certified Developer – Foundations', issuer: 'Anthropic', date: 'Sep 2026', id: '80864987-e416-4a08-bf17-71e3e4cc1a1a', img: 'f101c6ac-8a2d-4220-b381-70e3e6c364e3' },
+  { name: 'Claude Certified Associate – Foundations', issuer: 'Anthropic', date: 'Oct 2026', id: '8b067eec-bbba-4fdc-a2ba-3612bf3190e3', img: 'a6387cbd-5ac1-4894-833a-da2cbc28587e' },
+  { name: 'Deploy an Agent with Agent Development Kit (ADK)', issuer: 'Google Cloud', date: 'Oct 2026', id: 'ebce238f-ed66-4923-90af-d5b94cd9b83a', img: 'e9c45e2a-a48e-4686-99df-7de0ccd6dae7' },
+  { name: 'Govern Agent Access with Gemini Enterprise Agent Platform', issuer: 'Google Cloud', date: 'Oct 2026', id: '2452d1ea-fe24-461e-9261-fce8f3ec16c4', img: '39c0ab96-e088-4d83-baaf-395633aa1810' },
+  { name: 'Deploy Gemini Enterprise with Workspace Data Sources and Model Armor', issuer: 'Google Cloud', date: 'Oct 2026', id: 'e407b564-a886-4ccd-b28c-cea96deb5bf9', img: 'd82b7124-5d8a-4bb9-a3c0-7220e172f948' },
+];
+
 export default function App() {
   const reducedMotion = usePrefersReducedMotion();
   const [activeSection, setActiveSection] = useState('hero');
@@ -571,7 +546,7 @@ export default function App() {
   // Section observer for floating navbar
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'showcase', 'experience', 'projects', 'articles', 'skills', 'contact'];
+      const sections = ['hero', 'showcase', 'experience', 'projects', 'certifications', 'articles', 'skills', 'contact'];
       const scrollPos = window.scrollY + 200;
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -1096,7 +1071,7 @@ export default function App() {
                   {/* Left Column: Description, points, links */}
                   <div className="stack-card-left">
                     <div className="stack-card-meta">
-                      <span className="project-idx">{project.id} / 04</span>
+                      <span className="project-idx">{project.id} / {String(projectsData.length).padStart(2, '0')}</span>
                       <span className="project-category">{project.category}</span>
                     </div>
 
@@ -1148,6 +1123,53 @@ export default function App() {
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 5b. CERTIFICATIONS (Credly)                                  */}
+        {/* ============================================================ */}
+        <section id="certifications">
+          <div className="container">
+            <div className="section-header-wrap">
+              <div className="section-tag">
+                <span className="dot" />
+                <span>Credentials</span>
+              </div>
+              <h2 className="section-heading">Certifications</h2>
+              <p className="section-desc">
+                {certificationsData.length} verified badges from Anthropic and Google Cloud. Click any badge to verify it.
+              </p>
+            </div>
+
+            <div className="achievements-grid">
+              {certificationsData.map((cert) => (
+                <a
+                  key={cert.id}
+                  className="achievement-card cert-card"
+                  href={`https://www.credly.com/badges/${cert.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Verify ${cert.name} on Credly (opens in new tab)`}
+                >
+                  <img
+                    className="cert-badge"
+                    src={`https://images.credly.com/size/160x160/images/${cert.img}/blob`}
+                    alt=""
+                    width="72"
+                    height="72"
+                    loading="lazy"
+                  />
+                  <span className="achievement-text">
+                    <strong>{cert.name}</strong>
+                    <span className="cert-meta">{cert.issuer} · {cert.date}</span>
+                    <span className="cert-verify">
+                      Verify on Credly <i className="bi bi-box-arrow-up-right" />
+                    </span>
+                  </span>
+                </a>
               ))}
             </div>
           </div>
