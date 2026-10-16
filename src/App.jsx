@@ -335,9 +335,9 @@ const projectsData = [
 const experienceData = [
   {
     company: 'Accenture Solutions Pvt. Ltd.',
-    role: 'Software Engineer (FSE)',
-    period: '29-May-2026 – Present',
-    location: 'India',
+    role: 'Full Stack Engineer',
+    period: 'May 2026 – Present',
+    location: 'India · Hybrid',
     metrics: [
       { label: 'API Response Time', val: '10s ➔ 2.5s (75% faster)' },
       { label: 'IaC Automation', val: 'Snowflake via Terraform' },
