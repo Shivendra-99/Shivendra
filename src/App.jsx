@@ -344,9 +344,11 @@ const experienceData = [
       { label: 'Event Streaming', val: 'Apache Pulsar Listeners' },
     ],
     bullets: [
-      'Implemented advanced database pagination and index-driven query optimizations, reducing critical API response times from 10.0 seconds to 2.5 seconds.',
-      'Provisioned and maintained Snowflake data warehouse tables and access policies using Terraform to enforce robust Infrastructure-as-Code standards.',
-      'Engineered fault-tolerant Apache Pulsar messaging topics and distributed asynchronous listeners for reliable event-driven pipelines.',
+      'Reduced API response time by 75% (10s to 2.5s) through pagination and optimized SQL queries.',
+      'Fixed an N+1 query issue on an endpoint that was causing gateway timeouts in production.',
+      'Shrank Docker image size from 1.4 GB to 300 MB by trimming the build context and unused layers.',
+      'Set up Snowflake tables in Terraform so every infrastructure change goes through code review.',
+      'Built Apache Pulsar topics and listeners to handle async messaging between services.',
     ],
   },
   {
