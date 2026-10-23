@@ -542,8 +542,8 @@ const articlesData = [
 // Achievements
 const achievementsData = [
   { icon: 'bi-trophy-fill', text: 'Recognized for PCF to Red Hat OpenShift & AWS Cloud Migration leadership.' },
-  { icon: 'bi-star-fill', text: 'LeetCode: 3-Star Coder with strong algorithmic problem-solving skills.' },
-  { icon: 'bi-patch-check-fill', text: 'HackerRank: Gold Badge in Problem Solving & Algorithms.' },
+  { icon: 'bi-star-fill', text: 'LeetCode: 3-Star Coder with strong algorithmic problem-solving skills.', url: 'https://leetcode.com/u/Shivendra_9936/' },
+  { icon: 'bi-patch-check-fill', text: 'HackerRank: Gold Badge in Problem Solving & Algorithms.', url: 'https://www.hackerrank.com/Sanusonkar1' },
   { icon: 'bi-award-fill', text: 'HackerEarth Easy20: Ranked 443rd among competitive software engineers.' },
   { icon: 'bi-flag-fill', text: 'Interview Jump Start: Secured 1350th position nationwide in India.' },
   { icon: 'bi-bullseye', text: 'Tech Buzz Coding Contest: Secured 2nd Place across all competitors.' },
@@ -815,20 +815,20 @@ export default function App() {
                 {/* Quick Stats Strip */}
                 <div className="hero-stats-strip">
                   <div className="stat-item">
-                    <span className="stat-number">4+ Yrs</span>
+                    <span className="stat-number">5+ Yrs</span>
                     <span className="stat-label">Production Experience</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-number">75%</span>
-                    <span className="stat-label">API Latency Drop (10s ➔ 2.5s)</span>
+                    <span className="stat-label">Faster API (10s ➔ 2.5s)</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-number">1 Shipped</span>
-                    <span className="stat-label">Live SaaS Product (SnapFit)</span>
+                    <span className="stat-number">3 Shipped</span>
+                    <span className="stat-label">SnapFit + 2 npm packages</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-number">10+</span>
-                    <span className="stat-label">Cloud Services Shipped</span>
+                    <span className="stat-number">7</span>
+                    <span className="stat-label">Anthropic & Google Cloud certs</span>
                   </div>
                 </div>
               </div>
@@ -1393,12 +1393,26 @@ export default function App() {
             </div>
 
             <div className="achievements-grid">
-              {achievementsData.map((ach, idx) => (
-                <div key={idx} className="achievement-card">
-                  <i className={`bi ${ach.icon} achievement-icon`} />
-                  <span className="achievement-text">{ach.text}</span>
-                </div>
-              ))}
+              {achievementsData.map((ach, idx) =>
+                ach.url ? (
+                  <a
+                    key={idx}
+                    className="achievement-card"
+                    href={ach.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${ach.text} (opens profile in new tab)`}
+                  >
+                    <i className={`bi ${ach.icon} achievement-icon`} />
+                    <span className="achievement-text">{ach.text}</span>
+                  </a>
+                ) : (
+                  <div key={idx} className="achievement-card">
+                    <i className={`bi ${ach.icon} achievement-icon`} />
+                    <span className="achievement-text">{ach.text}</span>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </section>
