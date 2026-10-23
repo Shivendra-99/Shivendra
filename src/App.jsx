@@ -312,6 +312,46 @@ const projectsData = [
   },
   {
     id: '02',
+    title: 'shiprocket-react',
+    category: 'Open-Source npm Library',
+    tech: 'React, TypeScript, Node.js, Next.js, Express',
+    liveUrl: 'https://www.npmjs.com/package/shiprocket-react',
+    liveLabel: 'npm Package',
+    githubUrl: 'https://github.com/Shivendra-99/shiprocket-react',
+    points: [
+      'Built a React + server library that connects custom React, Next.js and Express stores to Shiprocket shipping and checkout. Shiprocket only has official plugins for Shopify, WooCommerce and Magento.',
+      'Ready-made components for pincode delivery checks, the checkout button, OTP address autofill and order tracking.',
+      'Keeps Shiprocket keys on the server, caches the 10-day login token and refreshes it when it expires.',
+      "Built by studying Shiprocket's official Shopify and WooCommerce plugins to match how they sign checkout requests and calculate parcel size.",
+    ],
+    highlights: [
+      { icon: 'bi-box-seam', text: 'Published on npm' },
+      { icon: 'bi-code-slash', text: 'Works with React 17, 18 and 19' },
+      { icon: 'bi-shield-check', text: 'Sandbox mode, no live keys needed' },
+    ],
+  },
+  {
+    id: '03',
+    title: 'Claude Connector for Edge',
+    category: 'Open-Source Browser Extension',
+    tech: 'JavaScript, Edge Extension (Manifest V3), Node.js, MCP, WebSocket',
+    liveUrl: 'https://www.npmjs.com/package/claude-edge-connector',
+    liveLabel: 'npm Package',
+    githubUrl: 'https://github.com/Shivendra-99/claude-edge-connector',
+    points: [
+      'Built an Edge extension and a small local server that let Claude, Cursor and other AI apps use the Edge tabs you choose, with your existing logins.',
+      'Gives the AI 13 browser actions: open tabs, read the page, click, type, scroll and take screenshots.',
+      "Safe by default: the AI only sees tabs you share, there's a blocked-sites list, passwords are hidden, and the server only accepts local connections.",
+      'Shows what the AI is doing with a glow, a moving cursor and a Stop button on the page.',
+    ],
+    highlights: [
+      { icon: 'bi-box-seam', text: 'Published on npm' },
+      { icon: 'bi-plug', text: 'Works with Claude, Cursor & VS Code' },
+      { icon: 'bi-laptop', text: 'Runs locally, no telemetry' },
+    ],
+  },
+  {
+    id: '04',
     title: 'News App',
     category: 'Live Web Application',
     tech: 'React 18, Vite, Tailwind CSS v4, React Router, Currents API',
@@ -340,8 +380,8 @@ const experienceData = [
     location: 'India · Hybrid',
     metrics: [
       { label: 'API Response Time', val: '10s ➔ 2.5s (75% faster)' },
-      { label: 'IaC Automation', val: 'Snowflake via Terraform' },
-      { label: 'Event Streaming', val: 'Apache Pulsar Listeners' },
+      { label: 'Docker Image Size', val: '1.4 GB ➔ 300 MB' },
+      { label: 'Infrastructure', val: 'Snowflake via Terraform' },
     ],
     bullets: [
       'Reduced API response time by 75% (10s to 2.5s) through pagination and optimized SQL queries.',
@@ -357,15 +397,20 @@ const experienceData = [
     period: '09/2021 – 28-May-2026',
     location: 'India',
     metrics: [
-      { label: 'Cloud Migration', val: 'PCF ➔ Red Hat OpenShift' },
-      { label: 'Frontend Cloud', val: 'Workloads migrated to AWS' },
-      { label: 'Monitoring', val: 'Dynatrace & Splunk APM' },
+      { label: 'Cloud Migration', val: 'PCF ➔ OpenShift' },
+      { label: 'Mainframe Integration', val: 'SFTP from Java services' },
+      { label: 'Production Fixes', val: 'Excel download & form submit bugs' },
+      { label: 'Recognition', val: '3 times for on-time delivery' },
     ],
     bullets: [
-      'Spearheaded enterprise backend application migration from Pivotal Cloud Foundry (PCF) to Red Hat OpenShift container platform and frontend to AWS, maximizing resilience and deployment speed.',
-      'Configured comprehensive Dynatrace APM telemetry, custom production dashboards, and synthetic alerts for proactive incident mitigation.',
-      'Automated secure SFTP integration pipelines to transfer sensitive batch files from Java microservices to banking MFS backends.',
-      'Established Splunk log ingestion queries and proactive alerting filters, slashing production incident Mean-Time-To-Resolution (MTTR).',
+      'Moved backend applications from PCF to OpenShift and deployed frontend applications on AWS.',
+      'Developed new features and resolved bugs in both React.js and Spring Boot applications.',
+      'Used Splunk to analyse logs and set up alerts that notified the team of backend errors early.',
+      'Integrated backend applications with Dynatrace to improve monitoring.',
+      'Set up SFTP file transfer from Java services to the mainframe system.',
+      'Fixed Excel downloads failing only in production. AWS was blocking the response headers that held the file name, so we moved that data into the response body.',
+      'Fixed a form that submitted with empty fields when users pressed Enter, causing bad requests. Added a check so it submits only when all required fields are filled.',
+      'Recognised three times for on-time delivery of features and bug fixes, and for cloud migration work.',
     ],
   },
 ];
@@ -1029,9 +1074,9 @@ export default function App() {
                     </ul>
                   </div>
 
-                  {/* Right Column: Quantified Telemetry & Metrics */}
+                  {/* Right Column: Highlights */}
                   <div className="stack-exp-right">
-                    <h4 className="card-highlights-title">Quantified Production Impact</h4>
+                    <h4 className="card-highlights-title">Highlights</h4>
                     <div className="highlight-chips-grid">
                       {exp.metrics.map((m, mIdx) => (
                         <div key={mIdx} className="exp-metric-card">
@@ -1095,7 +1140,7 @@ export default function App() {
                           className="btn-project-live"
                         >
                           <i className="bi bi-box-arrow-up-right" />
-                          <span>Live App</span>
+                          <span>{project.liveLabel || 'Live App'}</span>
                         </a>
                       )}
                       {project.githubUrl && (
