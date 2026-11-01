@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { MotionConfig } from 'motion/react';
-import { ArrowUpRight, Clock, MapPin, Menu, Moon, Sun, X } from 'lucide-react';
+import { ArrowUpRight, Check, Clock, Copy, Mail, MapPin, Menu, Moon, Phone, Sun, X } from 'lucide-react';
 import snapfitShot from '../assets/img/projects/snapfit.webp';
 import Hero from './components/Hero';
 import StatsBento, { bentoCard } from './components/StatsBento';
@@ -11,6 +11,7 @@ import { Reveal } from './components/Reveal';
 import { cn } from './lib/utils';
 
 const EMAIL = 'shivendrasonkar001@gmail.com';
+const PHONE = '+91 99361 20982';
 
 const navItems = [
   { id: 'experience', label: 'Experience' },
@@ -134,6 +135,11 @@ const experienceData = [
     role: 'Full Stack Engineer',
     period: 'May 2026 – Present',
     location: 'India · Hybrid',
+    // headline numbers shown beside the bullets; each one restates a bullet below
+    wins: [
+      { value: '75% faster', label: 'API response, 10s to 2.5s' },
+      { value: '1.4 GB → 300 MB', label: 'Docker image size' },
+    ],
     bullets: [
       'Reduced API response time by 75% (10s to 2.5s) through pagination and optimized SQL queries.',
       'Fixed an N+1 query issue on an endpoint that was causing gateway timeouts in production.',
@@ -147,6 +153,10 @@ const experienceData = [
     role: 'Software Engineer (FSE)',
     period: 'Sep 2021 – May 2026',
     location: 'India',
+    wins: [
+      { value: 'PCF → OpenShift', label: 'Backend migration, with frontends on AWS' },
+      { value: '3× recognised', label: 'For on-time delivery and cloud migration work' },
+    ],
     bullets: [
       'Moved backend applications from PCF to OpenShift and deployed frontend applications on AWS.',
       'Developed new features and resolved bugs in both React.js and Spring Boot applications.',
@@ -229,14 +239,66 @@ const container = 'mx-auto w-full max-w-6xl px-6 sm:px-10';
 
 const pill = 'inline-flex items-center gap-1 rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground';
 
-const button = {
-  primary:
-    'inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-6 text-sm font-medium text-background transition-[opacity,transform] duration-200 hover:opacity-90 active:scale-[0.96]',
-  secondary:
-    'inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-card px-5 text-sm font-medium transition-[background-color,transform] duration-200 hover:bg-muted active:scale-[0.96]',
-};
+
+// Round copy button: swaps to a check for two seconds; the hidden live region reads the result out
+function CopyButton({ value, label }) {
+  const [state, setState] = useState('idle');
+
+  const copy = () => {
+    // wrapped so a missing clipboard API (insecure context) lands in the failure branch too
+    Promise.resolve()
+      .then(() => navigator.clipboard.writeText(value))
+      .then(
+        () => setState('copied'),
+        () => setState('failed')
+      );
+    setTimeout(() => setState('idle'), 2000);
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      aria-label={label}
+      title={label}
+      className={cn(
+        'grid size-11 shrink-0 place-items-center rounded-full border bg-background transition-colors active:scale-[0.96]',
+        state === 'copied'
+          ? 'border-primary/40 text-primary'
+          : 'border-border text-muted-foreground hover:bg-muted hover:text-foreground'
+      )}
+    >
+      {state === 'copied' ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
+      <span className="sr-only" aria-live="polite">
+        {state === 'copied' ? 'Copied' : state === 'failed' ? "Couldn't copy" : ''}
+      </span>
+    </button>
+  );
+}
+
+// One contact method per row: icon, label and value (a link) on the left, copy button on the right
+function ContactRow({ icon: Icon, label, href, value, children }) {
+  return (
+    <li className="flex items-center gap-4 border-b border-border px-5 py-5 last:border-b-0 sm:px-8 sm:py-6">
+      <span className="hidden size-11 shrink-0 place-items-center rounded-full bg-muted text-muted-foreground sm:grid" aria-hidden="true">
+        <Icon className="size-5" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">{label}</p>
+        <a
+          href={href}
+          className="mt-1 block text-[15px] leading-snug font-light tracking-tight [overflow-wrap:anywhere] transition-colors hover:text-primary sm:text-2xl"
+        >
+          {children}
+        </a>
+      </div>
+      <CopyButton value={value} label={`Copy ${label.toLowerCase()}`} />
+    </li>
+  );
+}
 
 // Editorial heading: sans title, serif-italic aside, as in the hero
+
 function Section({ id, title, subtitle, children }) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="pt-28 sm:pt-36">
@@ -393,11 +455,22 @@ export default function App() {
                         </span>
                       </div>
                     </div>
-                    <ul className="mt-5 max-w-3xl list-disc space-y-2.5 pl-5 text-[15px] leading-relaxed text-foreground/85 marker:text-muted-foreground">
-                      {exp.bullets.map((b) => (
-                        <li key={b}>{b}</li>
-                      ))}
-                    </ul>
+                    {/* bullets on the left, headline wins highlighted on the right (above the bullets on phones) */}
+                    <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-10">
+                      <ul className="max-w-3xl list-disc space-y-2.5 pl-5 text-[15px] leading-relaxed text-foreground/85 marker:text-muted-foreground">
+                        {exp.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                      <ul aria-label="Highlights" className="grid content-start gap-3 max-lg:order-first sm:grid-cols-2 lg:grid-cols-1">
+                        {exp.wins.map((w) => (
+                          <li key={w.value} className="rounded-lg border border-primary/25 bg-primary/[0.07] px-4 py-3">
+                            <p className="text-lg font-semibold tracking-tight text-primary tabular-nums">{w.value}</p>
+                            <p className="mt-0.5 text-sm leading-snug text-muted-foreground">{w.label}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -480,31 +553,25 @@ export default function App() {
           </Section>
 
           <Section id="contact" title="Contact." subtitle="Email is the quickest way to reach me.">
-            <div className={cn(bentoCard, 'items-center px-6 py-14 text-center sm:py-20')}>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="font-serif text-[clamp(1.75rem,1rem+3.6vw,3.5rem)] leading-tight break-all italic hover:text-primary sm:break-normal"
-              >
-                {EMAIL}
-              </a>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <a href={`mailto:${EMAIL}`} className={button.primary}>
-                  Email me
-                </a>
-                <a href="tel:+919936120982" className={button.secondary}>
-                  +91 99361 20982
-                </a>
-              </div>
-              <ul className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-                {socialLinks.map((s) => (
-                  <li key={s.label}>
-                    <a href={s.url} target="_blank" rel="noreferrer" className="inline-block py-1 text-muted-foreground hover:text-foreground">
-                      {s.label} <span aria-hidden="true">↗</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="rounded-xl border border-border bg-card">
+              <ContactRow icon={Mail} label="Email" href={`mailto:${EMAIL}`} value={EMAIL}>
+                {/* on narrow screens wrap before the @, not mid-word */}
+                {EMAIL.split('@')[0]}
+                <wbr />@{EMAIL.split('@')[1]}
+              </ContactRow>
+              <ContactRow icon={Phone} label="Phone" href={`tel:${PHONE.replace(/\s/g, '')}`} value={PHONE}>
+                <span className="tabular-nums">{PHONE}</span>
+              </ContactRow>
+            </ul>
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              {socialLinks.map((s) => (
+                <li key={s.label}>
+                  <a href={s.url} target="_blank" rel="noreferrer" className="inline-block py-1 text-muted-foreground hover:text-foreground">
+                    {s.label} <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </Section>
         </div>
       </main>
